@@ -114,7 +114,7 @@ export default function Home() {
               variants={profileCircleVariants}
             >
               <motion.div
-                className="absolute -inset-80 rounded-full border-3 border-[#eff0ef]"
+                className="absolute -inset-100 rounded-full border-3 border-[#eff0ef]"
                 style={{ transformOrigin: "center" }}
                 variants={profileRingOuter}
               />
