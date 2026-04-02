@@ -10,10 +10,18 @@ export const siteConfig = {
 
 export const projects = [
   {
+    id: "ai-ticket-generator",
+    title: "Ticketeer",
+    subtitle: "AI-powered project ticketing tool",
+    date: "Mar 2026",
+    tech: ["TypScript", "Python", "Gemini LLM", "GitHub API"],
+    github: "https://github.com/Wallfou/Ticketeer",
+  },
+  {
     id: "draftpicks",
     title: "DraftPicks",
     subtitle: "NBA prop analytics platform",
-    date: "Jan 2026 – Present",
+    date: "Jan 2026 - Present",
     tech: ["TypeScript", "React", "Python", "Flask", "AWS"],
     github: "https://github.com/Wallfou/NBA-PICKS",
   },
@@ -21,7 +29,7 @@ export const projects = [
     id: "nustack",
     title: "NuStack",
     subtitle: "Real-time Q&A platform",
-    date: "Sep 2025 – Jan 2026",
+    date: "Sep 2025 - Jan 2026",
     tech: ["TypeScript", "React", "Node.js", "MongoDB", "Socket.io", "Firebase"],
     github: "https://github.com/Wallfou/NuStack",
   },
@@ -29,32 +37,22 @@ export const projects = [
     id: "pacman-rl",
     title: "Pac-Man RL Agent",
     subtitle: "Reinforcement learning with SARSA",
-    date: "Sep 2025 – Dec 2025",
+    date: "Sep 2025 - Dec 2025",
     tech: ["Python", "SARSA", "Reinforcement Learning"],
     github: "https://github.com/DonnyLe/cs_4100_final",
-  },
-  {
-    id: "ai-ticket-generator",
-    title: "AI Ticket Generator",
-    subtitle: "AI-powered project management tool",
-    date: "Mar 2026",
-    tech: ["Python", "Gemini LLM", "REST API", "GitHub API"],
-    github: "https://github.com/Wallfou/Ticketeer",
   },
 ];
 
 export const experiences = [
   {
-    role: "Software Tech Lead",
-    organization: "Northeastern Electric Racing Team",
-    location: "Boston, MA",
-    period: "Jan 2025 – Present",
+    role: "Incoming Software Engineer Intern",
+    organization: "Capital One",
+    location: "Mclean, VA",
+    period: "Jun 2026 - Aug 2026",
     highlights: [
-      "Led a software development team of 10+ engineers maintaining a club-developed ERP application (React, Node.js, Express, Prisma), managing 20+ projects for 60+ users across 4 engineering sub-teams",
-      "Drove Agile transformation of the calendar module, delivering sprint-based feature releases that reduced scheduling conflicts and improved user satisfaction from 6.5 to 8.5/10",
-      "Developed and led a launchpad program for 10 new club members, delivering weekly lectures and office hours covering fundamental frontend and backend concepts",
+      "Coming soon!",
     ],
-    tech: ["React", "Node.js", "Express", "Prisma"],
+    tech: [],
   },
   {
     role: "Hackathon Participant",
@@ -66,7 +64,19 @@ export const experiences = [
       "Engineered keyword-based file retrieval and priority-weighted context injection to ground Gemini LLM outputs in actual codebase content",
       "Built a conversational AI chatbot enabling iterative ticket refinement through natural language prompts",
     ],
-    tech: ["Python", "Gemini LLM", "REST API"],
+    tech: ["TypScript", "Python", "Gemini LLM", "GitHub API"],
+  },
+  {
+    role: "Software Tech Lead",
+    organization: "Northeastern Electric Racing Team",
+    location: "Boston, MA",
+    period: "Jan 2025 – Present",
+    highlights: [
+      "Led a software development team of 10+ engineers maintaining a club-developed ERP application (React, Node.js, Express, Prisma), managing 20+ projects for 60+ users across 4 engineering sub-teams",
+      "Drove Agile transformation of the calendar module, delivering sprint-based feature releases that reduced scheduling conflicts and improved user satisfaction from 6.5 to 8.5/10",
+      "Developed and led a launchpad program for 10 new club members, delivering weekly lectures and office hours covering fundamental frontend and backend concepts",
+    ],
+    tech: ["React", "Node.js", "Express", "Prisma"],
   },
 ];
 

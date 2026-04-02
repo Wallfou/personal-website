@@ -10,7 +10,6 @@ const leftLinks = [
 
 const rightLinks = [
   { href: "#experience", label: "Experience" },
-  { href: "#about", label: "About" },
   { href: "#contact", label: "Contact" },
 ];
 
