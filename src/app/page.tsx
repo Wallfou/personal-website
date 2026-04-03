@@ -153,11 +153,11 @@ export default function Home() {
         </div>
 
         <div
-          className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.22fr)] md:gap-x-10 lg:gap-x-16 items-start md:items-center"
+          className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.22fr)] md:gap-x-0 items-start md:items-center"
           onMouseLeave={() => setHoveredProjectId(null)}
         >
-          {/* left: project list */}
-          <div className="min-w-0">
+          {/* left: project list — pr separates text from preview without grid gap stealing width */}
+          <div className="min-w-0 md:pr-8 lg:pr-10">
             {projects.map((project) => (
               <a
                 key={project.id}
