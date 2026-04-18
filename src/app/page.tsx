@@ -8,7 +8,13 @@ import { ArrowUpRight, ChevronDown, Mail, MapPin, GitFork, ExternalLink } from "
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/lib/data";
 import profilePicture from "../../public/images/profile.png";
-import Image from "next/image";
+import draftPicksPic from "../../public/images/DraftPicksPic.png";
+import rlAgentPic from "../../public/images/RLAgentPic.png";
+import ticketeerPic from "../../public/images/TicketeerPic.png";
+import nuStackPic from "../../public/images/NuStackPic.png";
+import medoraPic from "../../public/images/medoraPic.png";
+import cloudAutoscalingPic from "../../public/images/CloudPic.png";
+import Image, { type StaticImageData } from "next/image";
 
 
 
@@ -39,30 +45,30 @@ const profileRingInner = {
   },
 };
 
-const projectCardImages: Record<string, { src: string; alt: string; objectClass?: string }> = {
+const projectCardImages: Record<string, { src: StaticImageData; alt: string; objectClass?: string }> = {
   draftpicks: {
-    src: "/images/DraftPicksPic.png",
+    src: draftPicksPic,
     alt: "DraftPicks — NBA prop analytics platform",
   },
   "pacman-rl": {
-    src: "/images/RLAgentPic.png",
+    src: rlAgentPic,
     alt: "Pac-Man RL Agent — reinforcement learning with SARSA",
   },
   "ai-ticket-generator": {
-    src: "/images/TicketeerPic.png",
+    src: ticketeerPic,
     alt: "Ticketeer — AI-powered project ticketing tool",
   },
   nustack: {
-    src: "/images/NuStackPic.png",
+    src: nuStackPic,
     alt: "NuStack — real-time Q&A platform",
   },
   medora: {
-    src: "/images/medoraPic.png",
+    src: medoraPic,
     alt: "Medora — Gemma 4 powered app",
-    objectClass: "object-cover object-center",
+    objectClass: "object-cover object-top",
   },
   "cloud-autoscaling": {
-    src: "/images/CloudPic.png",
+    src: cloudAutoscalingPic,
     alt: "Cloud Autoscaling Simulation — C++ round-robin cloud autoscaling simulator",
   },
 };
@@ -162,7 +168,7 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14 md:gap-y-16 lg:gap-x-12">
           {projects.map((project, i) => {
             const cardImage = projectCardImages[project.id];
-            const objectClass = cardImage?.objectClass ?? "object-cover object-top";
+            const objectClass = cardImage?.objectClass ?? "object-cover object-center";
             return (
               <motion.article
                 key={project.id}
