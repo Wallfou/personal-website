@@ -26,6 +26,22 @@ export const projects = [
     github: "https://github.com/Wallfou/NBA-PICKS",
   },
   {
+    id: "medora",
+    title: "Medora",
+    subtitle: "Gemma 4 powered app",
+    date: "March 2026 - May 2026",
+    tech: ["Gemma 4", "Python", "Ollama"],
+    github: "https://github.com/Wallfou/Medora",
+  },
+  {
+    id: "pacman-rl",
+    title: "PacMan RL",
+    subtitle: "Reinforcement learning",
+    date: "Sep 2025 - Dec 2025",
+    tech: ["Python", "SARSA", "Reinforcement Learning"],
+    github: "https://github.com/DonnyLe/cs_4100_final",
+  },
+  {
     id: "nustack",
     title: "NuStack",
     subtitle: "Real-time Q&A platform",
@@ -34,13 +50,14 @@ export const projects = [
     github: "https://github.com/Wallfou/NuStack",
   },
   {
-    id: "pacman-rl",
-    title: "Pac-Man RL Agent",
-    subtitle: "Reinforcement learning with SARSA",
-    date: "Sep 2025 - Dec 2025",
-    tech: ["Python", "SARSA", "Reinforcement Learning"],
-    github: "https://github.com/DonnyLe/cs_4100_final",
+    id: "cloud-autoscaling",
+    title: "Cloud Autoscaling Simulation",
+    subtitle: "Cloud Autoscaling Simulation",
+    date: "March 2026 - April 2026",
+    tech: ["C++", "Round Robin Scheduling", "Cloud Autoscaling"],
+    github: "https://github.com/Wallfou/cloud-autoscaling-simulator",
   },
+  
 ];
 
 export const experiences = [

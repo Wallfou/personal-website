@@ -5,13 +5,10 @@ import { projects, experiences, education } from "@/lib/data";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Mail, MapPin, GitFork, ExternalLink } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/lib/data";
 import profilePicture from "../../public/images/profile.png";
-import draftPicksPic from "../../public/images/DraftPicksPic.png";
-import rlAgentPic from "../../public/images/RLAgentPic.png";
-import ticketeerPic from "../../public/images/TicketeerPic.png";
-import nuStackPic from "../../public/images/NuStackPic.png";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 
 
 
@@ -42,31 +39,37 @@ const profileRingInner = {
   },
 };
 
-const projectCardImages: Record<string, { src: StaticImageData; alt: string }> = {
+const projectCardImages: Record<string, { src: string; alt: string; objectClass?: string }> = {
   draftpicks: {
-    src: draftPicksPic,
+    src: "/images/DraftPicksPic.png",
     alt: "DraftPicks — NBA prop analytics platform",
   },
   "pacman-rl": {
-    src: rlAgentPic,
+    src: "/images/RLAgentPic.png",
     alt: "Pac-Man RL Agent — reinforcement learning with SARSA",
   },
   "ai-ticket-generator": {
-    src: ticketeerPic,
+    src: "/images/TicketeerPic.png",
     alt: "Ticketeer — AI-powered project ticketing tool",
   },
   nustack: {
-    src: nuStackPic,
+    src: "/images/NuStackPic.png",
     alt: "NuStack — real-time Q&A platform",
   },
+  medora: {
+    src: "/images/medoraPic.png",
+    alt: "Medora — Gemma 4 powered app",
+    objectClass: "object-cover object-center",
+  },
+  "cloud-autoscaling": {
+    src: "/images/CloudPic.png",
+    alt: "Cloud Autoscaling Simulation — C++ round-robin cloud autoscaling simulator",
+  },
 };
-
-const projectPreviewImageLeft = new Set(["ai-ticket-generator", "nustack"]);
 
 export default function Home() {
   const [openExpIdx, setOpenExpIdx] = useState<number | null>(null);
   const [eduOpen, setEduOpen] = useState(false);
-  const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null);
 
   return (
     <div className="pt-20" id="home">
@@ -81,26 +84,30 @@ export default function Home() {
               <h1 className="font-serif text-7xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight">
                 Wa
                 <br />
+                Kenneth
+                <br />
                 Fan
               </h1>
             </div>
-            <p className="text-[#999] text-lg leading-relaxed max-w-sm">
-              Building thoughtful software at the intersection of engineering
-              precision and design clarity. Based in Boston.
-            </p>
-            <div className="flex items-center gap-8 pt-2">
-              <Link
-                href="#projects"
-                className="inline-flex items-center gap-2 text-sm font-medium border-b border-[#1a1a1a] pb-1 hover:gap-3 transition-all duration-200"
+            <div className="flex items-center gap-6 pt-2">
+              <a
+                href={siteConfig.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200"
+                aria-label="LinkedIn"
               >
-                View Projects
-              </Link>
-              <Link
-                href="#experience"
-                className="inline-flex items-center gap-2 text-sm font-medium border-b border-[#1a1a1a] pb-1 hover:text-[#1a1a1a] hover:border-[#1a1a1a] transition-all duration-200"
+                <FaLinkedin className="w-6 h-6" aria-hidden />
+              </a>
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200"
+                aria-label="GitHub"
               >
-                View Experience
-              </Link>
+                <FaGithub className="w-6 h-6" aria-hidden />
+              </a>
             </div>
           </div>
 
@@ -141,9 +148,9 @@ export default function Home() {
 
       <div className="border-t border-[#ebebeb] mx-8 md:mx-16 lg:mx-24" />
 
-      {/* project — list + sticky preview */}
+      {/* projects — two per row */}
       <section id="projects" className="py-24 md:py-40 px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto">
-        <div className="mb-8 md:mb-10">
+        <div className="mb-10 md:mb-14">
           <p className="label mb-4">[Selected Work]</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light">
             Featured
@@ -152,84 +159,58 @@ export default function Home() {
           </h2>
         </div>
 
-        <div
-          className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,1.22fr)] md:gap-x-0 items-start md:items-center"
-          onMouseLeave={() => setHoveredProjectId(null)}
-        >
-          {/* left: project list — pr separates text from preview without grid gap stealing width */}
-          <div className="min-w-0 md:pr-8 lg:pr-10">
-            {projects.map((project) => (
-              <a
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14 md:gap-y-16 lg:gap-x-12">
+          {projects.map((project, i) => {
+            const cardImage = projectCardImages[project.id];
+            const objectClass = cardImage?.objectClass ?? "object-cover object-top";
+            return (
+              <motion.article
                 key={project.id}
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group project-card flex w-full items-start justify-between gap-6 py-3 first:pt-0 border-0"
-                onMouseEnter={() => setHoveredProjectId(project.id)}
+                className="min-w-0"
+                initial={{ y: 12 }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true, amount: 0.08, margin: "0px 0px -40px 0px" }}
+                transition={{ duration: 0.45, ease: circleEase, delay: i * 0.05 }}
               >
-                <div className="min-w-0 flex-1">
-                  <h3 className="font-serif text-3xl tracking-tight text-[#080808] leading-[1.12]">
-                    {project.title}
-                  </h3>
-                  <p className="mt-1.5 text-sm font-sans text-[#6e6e6e] leading-relaxed">
-                    {project.subtitle}
-                    <span className="text-[#a8a8a8]"> · </span>
-                    [{project.date}]
-                  </p>
-                </div>
-                <ArrowUpRight
-                  size={22}
-                  strokeWidth={2}
-                  className="mt-1 shrink-0 text-[#1a1a1a] opacity-0 transition-opacity duration-200 group-hover:opacity-100"
-                  aria-hidden
-                />
-              </a>
-            ))}
-          </div>
-
-          {/* right: full-bleed sticky image (white shows through when nothing hovered) */}
-          <div
-            className="hidden md:block sticky top-28 lg:top-32 w-full h-[min(78vh,640px)] min-h-[500px] md:min-h-[520px] lg:min-h-[560px] overflow-hidden bg-white"
-          >
-            <div
-              className={`absolute inset-0 z-10 flex items-center justify-center pointer-events-none transition-opacity duration-300 ${
-                hoveredProjectId ? "opacity-0" : "opacity-100"
-              }`}
-              aria-hidden={!!hoveredProjectId}
-            >
-              <span className="text-sm text-[#999] font-sans">[Hover text for preview]</span>
-            </div>
-            {projects.map((project) => {
-              const cardImage = projectCardImages[project.id];
-              const active = hoveredProjectId === project.id;
-              return (
-                <motion.div
-                  key={project.id}
-                  className="pointer-events-none absolute inset-0"
-                  initial={false}
-                  animate={{
-                    opacity: active ? 1 : 0,
-                    y: active ? 0 : 14,
-                  }}
-                  transition={{ duration: 0.35, ease: circleEase }}
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block outline-none"
                 >
-                  {cardImage ? (
-                    <Image
-                      src={cardImage.src}
-                      alt={cardImage.alt}
-                      fill
-                      className={
-                        projectPreviewImageLeft.has(project.id)
-                          ? "object-cover object-left"
-                          : "object-cover object-center"
-                      }
-                      sizes="(max-width: 1280px) 52vw, 720px"
+                  <div className="relative aspect-video w-full overflow-hidden bg-[#f0f0ec]">
+                    {cardImage ? (
+                      <Image
+                        src={cardImage.src}
+                        alt={cardImage.alt}
+                        fill
+                        className={objectClass}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    ) : null}
+                  </div>
+                  <div className="mt-5 flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <h3 className="font-serif text-2xl md:text-3xl tracking-tight text-[#080808] leading-[1.12]">
+                        {project.title}
+                      </h3>
+                      <p className="mt-2 text-sm font-sans text-[#6e6e6e] leading-relaxed">
+                        {project.subtitle}
+                        <span className="text-[#a8a8a8]"> · </span>
+                        <span className="text-[#8a8a8a]">[{project.date}]</span>
+                      </p>
+                    </div>
+                    <ArrowUpRight
+                      size={22}
+                      strokeWidth={2}
+                      className="mt-1 shrink-0 text-[#1a1a1a] opacity-30 transition-opacity duration-200 group-hover:opacity-100"
+                      aria-hidden
                     />
-                  ) : null}
-                </motion.div>
-              );
-            })}
-          </div>
+                  </div>
+                </a>
+              </motion.article>
+            );
+          })}
         </div>
       </section>
 
