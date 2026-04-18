@@ -65,7 +65,7 @@ const projectCardImages: Record<string, { src: StaticImageData; alt: string; obj
   medora: {
     src: medoraPic,
     alt: "Medora — Gemma 4 powered app",
-    objectClass: "object-cover object-top",
+    objectClass: "object-cover object-center",
   },
   "cloud-autoscaling": {
     src: cloudAutoscalingPic,
