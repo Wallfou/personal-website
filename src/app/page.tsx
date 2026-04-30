@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Mail, MapPin, GitFork, ExternalLink } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/lib/data";
-import profilePicture from "../../public/images/profile.png";
+import hongKongImage from "../../public/images/hongkongimage.png";
 import draftPicksPic from "../../public/images/DraftPicksPic.png";
 import rlAgentPic from "../../public/images/RLAgentPic.png";
 import ticketeerPic from "../../public/images/TicketeerPic.png";
@@ -19,31 +19,6 @@ import Image, { type StaticImageData } from "next/image";
 
 
 const circleEase = [0.16, 1, 0.3, 1] as const;
-
-const profileCircleVariants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0, delayChildren: 0 },
-  },
-};
-
-const profileRingOuter = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { duration: 1, delay: 0.3, ease: circleEase },
-  },
-};
-
-const profileRingInner = {
-  hidden: { scale: 0, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { duration: 0.8, delay: 0, ease: circleEase },
-  },
-};
 
 const projectCardImages: Record<string, { src: StaticImageData; alt: string; objectClass?: string }> = {
   draftpicks: {
@@ -80,76 +55,75 @@ export default function Home() {
   return (
     <div className="pt-20" id="home">
 
-      {/* hero */}
-      <section className="min-h-[92vh] flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-32 items-center py-32">
-          {/* left */}
-          <div className="space-y-14">
-            <div>
-              <p className="label mb-8">[Software Engineer]</p>
-              <h1 className="font-serif text-7xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight">
-                Wa
-                <br />
-                Kenneth
-                <br />
-                Fan
-              </h1>
-            </div>
-            <div className="flex items-center gap-6 pt-2">
-              <a
-                href={siteConfig.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin className="w-6 h-6" aria-hidden />
-              </a>
-              <a
-                href={siteConfig.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#1a1a1a] hover:opacity-60 transition-opacity duration-200"
-                aria-label="GitHub"
-              >
-                <FaGithub className="w-6 h-6" aria-hidden />
-              </a>
+      {/* hero — gallery wall */}
+      <section className="min-h-[92vh] flex flex-col justify-between bg-[#f2efea] px-6 md:px-10 lg:px-14 py-8">
+
+        {/* framed artwork */}
+        <div className="flex-1 flex flex-col justify-center max-w-screen-2xl mx-auto w-full">
+          <div className="shadow-[0_16px_80px_-8px_rgba(0,0,0,0.45)]">
+            {/* black frame border */}
+            <div className="p-4 bg-[#1a1a1a]">
+              {/* cream mat board */}
+              <div className="p-6 bg-[#f5f3ef]">
+                {/* image: fills the mat; text overlays on top */}
+                <div className="relative overflow-hidden min-h-[68vh]">
+                  <Image
+                    src={hongKongImage}
+                    alt="Hong Kong cityscape"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                    sizes="100vw"
+                  />
+                  {/* directional dark overlay for text legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/42 to-black/18" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+
+                  {/* text */}
+                  <div className="relative z-10 flex flex-col justify-between p-8 md:p-12 min-h-[68vh]">
+                    <p className="label" style={{ color: "rgb(255,255,255)" }}>[Software Engineer]</p>
+
+                    <div className="space-y-10">
+                      <h1 className="font-serif text-7xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight text-white">
+                        Wa
+                        <br />
+                        Kenneth
+                        <br />
+                        Fan
+                      </h1>
+                      <div className="flex items-center gap-6">
+                        <a
+                          href={siteConfig.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:opacity-60 transition-opacity duration-200"
+                          aria-label="LinkedIn"
+                        >
+                          <FaLinkedin className="w-6 h-6" aria-hidden />
+                        </a>
+                        <a
+                          href={siteConfig.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-white hover:opacity-60 transition-opacity duration-200"
+                          aria-label="GitHub"
+                        >
+                          <FaGithub className="w-6 h-6" aria-hidden />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* right: profile circle — rings animate when this block enters the viewport */}
-          <div className="flex justify-center md:justify-end">
-            <motion.div
-              className="relative"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.35 }}
-              variants={profileCircleVariants}
-            >
-              <motion.div
-                className="absolute -inset-100 rounded-full border-3 border-[#eff0ef]"
-                style={{ transformOrigin: "center" }}
-                variants={profileRingOuter}
-              />
-              <motion.div
-                className="absolute -inset-30 rounded-full border-3 border-[#d4d9d4]"
-                style={{ transformOrigin: "center" }}
-                variants={profileRingInner}
-              />
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-[#f5f5f0] flex items-center justify-center overflow-hidden relative">
-                <Image src={profilePicture} alt="WF" className="w-full h-full object-cover" />
-              </div>
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                <span className="label">Boston, MA · Available 2027</span>
-              </div>
-            </motion.div>
+          {/* gallery caption */}
+          <div className="mt-8 flex justify-between items-center">
+            <span className="label">Scroll to explore</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4 pb-20">
-          <div className="w-10 h-px bg-[#d0d0d0]" />
-          <span className="label">Scroll to explore</span>
-        </div>
       </section>
 
       <div className="border-t border-[#ebebeb] mx-8 md:mx-16 lg:mx-24" />
