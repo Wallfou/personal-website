@@ -224,9 +224,10 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6">
+        <div className="group/wall columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6">
           {galleryCells.map((cell, i) => {
-            const cls = "break-inside-avoid mb-4 md:mb-6";
+            const cls =
+              "break-inside-avoid mb-4 md:mb-6 transition-opacity duration-300 group-has-[.project-card:hover]/wall:opacity-30";
 
             const FramedImage = ({
               src,
@@ -281,7 +282,10 @@ export default function Home() {
             if (!project) return null;
 
             return (
-              <article key={cell.id} className={cls}>
+              <article
+                key={cell.id}
+                className={`${cls} project-card hover:!opacity-100`}
+              >
                 <a
                   href={project.github}
                   target="_blank"
