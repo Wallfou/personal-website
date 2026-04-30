@@ -3,11 +3,23 @@
 import Link from "next/link";
 import { projects, experiences, education } from "@/lib/data";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowUpRight, ChevronDown, Mail, MapPin, GitFork, ExternalLink } from "lucide-react";
+import {
+  ArrowUpRight,
+  ChevronDown,
+  Mail,
+  MapPin,
+  GitFork,
+  ExternalLink,
+} from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { siteConfig } from "@/lib/data";
 import hongKongImage from "../../public/images/hongkongimage.png";
+import project1Image from "../../public/images/project1.png";
+import project2Image from "../../public/images/project2.png";
+import project3Image from "../../public/images/project3.png";
+import project4Image from "../../public/images/project4.png";
+import project5Image from "../../public/images/project5.png";
+import project6Image from "../../public/images/project6.png";
 import draftPicksPic from "../../public/images/DraftPicksPic.png";
 import rlAgentPic from "../../public/images/RLAgentPic.png";
 import ticketeerPic from "../../public/images/TicketeerPic.png";
@@ -16,11 +28,39 @@ import medoraPic from "../../public/images/medoraPic.png";
 import cloudAutoscalingPic from "../../public/images/CloudPic.png";
 import Image, { type StaticImageData } from "next/image";
 
+type GalleryCell =
+  | {
+      kind: "project";
+      id: string;
+      cropRatio?: string;
+    }
+  | {
+      kind: "decor";
+      src: StaticImageData;
+      alt: string;
+      label: string;
+    };
 
+// masonry order — items flow top→bottom in each column.
+const galleryCells: GalleryCell[] = [
+  { kind: "project", id: "ai-ticket-generator" },
+  { kind: "decor", src: project2Image, alt: "Gallery piece II", label: "No. II" },
+  { kind: "decor", src: project4Image, alt: "Gallery piece IV", label: "No. IV" },
+  { kind: "decor", src: project6Image, alt: "Gallery piece VI", label: "No. VI" },
+  { kind: "project", id: "medora", cropRatio: "aspect-[4/8]" },
+  { kind: "decor", src: project5Image, alt: "Gallery piece V", label: "No. V" },
+  { kind: "project", id: "draftpicks" },
+  { kind: "decor", src: project1Image, alt: "Gallery piece I", label: "No. I" },
+  { kind: "project", id: "nustack" },
+  { kind: "decor", src: project3Image, alt: "Gallery piece III", label: "No. III" },
+  { kind: "project", id: "pacman-rl" },
+  { kind: "project", id: "cloud-autoscaling" },
+];
 
-const circleEase = [0.16, 1, 0.3, 1] as const;
-
-const projectCardImages: Record<string, { src: StaticImageData; alt: string; objectClass?: string }> = {
+const projectCardImages: Record<
+  string,
+  { src: StaticImageData; alt: string; objectClass?: string }
+> = {
   draftpicks: {
     src: draftPicksPic,
     alt: "DraftPicks — NBA prop analytics platform",
@@ -54,10 +94,8 @@ export default function Home() {
 
   return (
     <div className="pt-20" id="home">
-
       {/* hero — gallery wall */}
       <section className="min-h-[92vh] flex flex-col justify-between bg-[#f2efea] px-6 md:px-10 lg:px-14 py-8">
-
         {/* framed artwork */}
         <div className="flex-1 flex flex-col justify-center max-w-screen-2xl mx-auto w-full">
           <div className="shadow-[0_16px_80px_-8px_rgba(0,0,0,0.45)]">
@@ -81,7 +119,9 @@ export default function Home() {
 
                   {/* text */}
                   <div className="relative z-10 flex flex-col justify-between p-8 md:p-12 min-h-[68vh]">
-                    <p className="label" style={{ color: "rgb(255,255,255)" }}>[Software Engineer]</p>
+                    <p className="label" style={{ color: "rgb(255,255,255)" }}>
+                      [Software Engineer]
+                    </p>
 
                     <div className="space-y-10">
                       <h1 className="font-serif text-7xl md:text-8xl lg:text-9xl font-light leading-[0.9] tracking-tight text-white">
@@ -123,13 +163,15 @@ export default function Home() {
             <span className="label">Scroll to explore</span>
           </div>
         </div>
-
       </section>
 
       <div className="border-t border-[#ebebeb] mx-8 md:mx-16 lg:mx-24" />
 
-      {/* projects — two per row */}
-      <section id="projects" className="py-24 md:py-40 px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto">
+      {/* projects — gallery wall */}
+      <section
+        id="projects"
+        className="py-24 md:py-40 px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto"
+      >
         <div className="mb-10 md:mb-14">
           <p className="label mb-4">[Selected Work]</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light">
@@ -139,56 +181,91 @@ export default function Home() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14 md:gap-y-16 lg:gap-x-12">
-          {projects.map((project, i) => {
-            const cardImage = projectCardImages[project.id];
-            const objectClass = cardImage?.objectClass ?? "object-cover object-center";
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6">
+          {galleryCells.map((cell, i) => {
+            const cls = "break-inside-avoid mb-4 md:mb-6";
+
+            const FramedImage = ({
+              src,
+              alt,
+              cropRatio,
+            }: {
+              src: StaticImageData;
+              alt: string;
+              cropRatio?: string;
+            }) => (
+              <div className="shadow-[0_16px_48px_-8px_rgba(0,0,0,0.35)]">
+                <div className="p-[10px] bg-[#1a1a1a]">
+                  <div className="p-3 md:p-4 bg-[#f5f3ef]">
+                    {cropRatio ? (
+                      <div className={`relative ${cropRatio} overflow-hidden`}>
+                        <Image
+                          src={src}
+                          alt={alt}
+                          fill
+                          className="object-contain object-center"
+                          sizes="(max-width: 768px) 100vw, 60vw"
+                        />
+                      </div>
+                    ) : (
+                      <Image
+                        src={src}
+                        alt={alt}
+                        width={src.width}
+                        height={src.height}
+                        className="w-full h-auto block object-contain object-center"
+                        sizes="(max-width: 768px) 100vw, 60vw"
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+
+            if (cell.kind === "decor") {
+              return (
+                <div key={`decor-${i}`} className={cls}>
+                  <FramedImage src={cell.src} alt={cell.alt} />
+                  <div className="mt-2">
+                    <span className="label">{cell.label}</span>
+                  </div>
+                </div>
+              );
+            }
+
+            const project = projects.find((p) => p.id === cell.id);
+            const cardImage = projectCardImages[cell.id];
+            if (!project) return null;
+
             return (
-              <motion.article
-                key={project.id}
-                className="min-w-0"
-                initial={{ y: 12 }}
-                whileInView={{ y: 0 }}
-                viewport={{ once: true, amount: 0.08, margin: "0px 0px -40px 0px" }}
-                transition={{ duration: 0.45, ease: circleEase, delay: i * 0.05 }}
-              >
+              <article key={cell.id} className={cls}>
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block outline-none"
                 >
-                  <div className="relative aspect-video w-full overflow-hidden bg-[#f0f0ec]">
-                    {cardImage ? (
-                      <Image
-                        src={cardImage.src}
-                        alt={cardImage.alt}
-                        fill
-                        className={objectClass}
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    ) : null}
-                  </div>
-                  <div className="mt-5 flex items-start justify-between gap-4">
+                  <FramedImage
+                    src={cardImage?.src ?? project1Image}
+                    alt={
+                      cardImage ? `${project.title} screenshot` : project.title
+                    }
+                    cropRatio={cell.cropRatio}
+                  />
+                  <div className="mt-3 flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <h3 className="font-serif text-2xl md:text-3xl tracking-tight text-[#080808] leading-[1.12]">
+                      <h3 className="font-serif text-xl md:text-2xl tracking-tight text-[#080808] leading-[1.12]">
                         {project.title}
                       </h3>
-                      <p className="mt-2 text-sm font-sans text-[#6e6e6e] leading-relaxed">
+                      <p className="mt-1 text-xs font-sans text-[#6e6e6e] leading-relaxed">
                         {project.subtitle}
                         <span className="text-[#a8a8a8]"> · </span>
                         <span className="text-[#8a8a8a]">[{project.date}]</span>
                       </p>
                     </div>
-                    <ArrowUpRight
-                      size={22}
-                      strokeWidth={2}
-                      className="mt-1 shrink-0 text-[#1a1a1a] opacity-30 transition-opacity duration-200 group-hover:opacity-100"
-                      aria-hidden
-                    />
                   </div>
                 </a>
-              </motion.article>
+              </article>
             );
           })}
         </div>
@@ -197,9 +274,14 @@ export default function Home() {
       <div className="border-t border-[#ebebeb] mx-8 md:mx-16 lg:mx-24" />
 
       {/* experience */}
-      <section id="experience" className="px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto py-32 md:py-40">
+      <section
+        id="experience"
+        className="px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto py-32 md:py-40"
+      >
         <div className="mb-20">
-          <p className="label mb-4">[Experience · {experiences.length} Roles]</p>
+          <p className="label mb-4">
+            [Experience · {experiences.length} Roles]
+          </p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
             <h2 className="font-serif text-4xl md:text-5xl font-light leading-tight">
               Work &amp;
@@ -245,7 +327,9 @@ export default function Home() {
                             </p>
                           </div>
                           <div className="flex items-center gap-3 flex-shrink-0 md:pt-1">
-                            <span className="text-xs tabular-nums whitespace-nowrap text-[#5a5a5a]">[{exp.period}]</span>
+                            <span className="text-xs tabular-nums whitespace-nowrap text-[#5a5a5a]">
+                              [{exp.period}]
+                            </span>
                             <ChevronDown
                               size={14}
                               className={`text-[#999] transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
@@ -267,13 +351,17 @@ export default function Home() {
                             {exp.highlights.map((h, j) => (
                               <div key={j} className="flex gap-4">
                                 <div className="mt-2 w-1.5 h-1.5 rounded-full bg-[#c0c0c0] flex-shrink-0" />
-                                <p className="text-sm text-[#3a3a3a] font-light leading-relaxed">{h}</p>
+                                <p className="text-sm text-[#3a3a3a] font-light leading-relaxed">
+                                  {h}
+                                </p>
                               </div>
                             ))}
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {exp.tech.map((t) => (
-                              <span key={t} className="pill text-[11px]">{t}</span>
+                              <span key={t} className="pill text-[11px]">
+                                {t}
+                              </span>
                             ))}
                           </div>
                         </div>
@@ -303,7 +391,9 @@ export default function Home() {
                     <h3 className="font-serif text-2xl md:text-3xl font-light transition-all duration-200">
                       {education.school}
                     </h3>
-                    <p className="text-[#999] font-light text-sm">{education.degree}</p>
+                    <p className="text-[#999] font-light text-sm">
+                      {education.degree}
+                    </p>
                   </div>
                   <div className="flex items-center gap-3 flex-shrink-0 md:pt-1">
                     <span className="pill text-xs">{education.graduation}</span>
@@ -328,7 +418,9 @@ export default function Home() {
                   <p className="label mb-5">[Coursework]</p>
                   <div className="flex flex-wrap gap-2">
                     {education.coursework.map((c) => (
-                      <span key={c} className="pill text-[11px]">{c}</span>
+                      <span key={c} className="pill text-[11px]">
+                        {c}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -341,7 +433,10 @@ export default function Home() {
       <div className="border-t border-[#ebebeb] mx-8 md:mx-16 lg:mx-24" />
 
       {/* contact */}
-      <section id="contact" className="px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto py-28 md:py-36">
+      <section
+        id="contact"
+        className="px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto py-28 md:py-36"
+      >
         <div className="w-full">
           <p className="label mb-4">[Reach Out]</p>
           <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
@@ -419,8 +514,17 @@ export default function Home() {
         <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <span className="font-serif text-sm">Built by Wa Fan!</span>
           <div className="flex items-center gap-10">
-            <Link href="#projects" className="label">Projects</Link>
-            <Link href="https://github.com/Wallfou" target="_blank" rel="noopener noreferrer" className="label">GitHub</Link>
+            <Link href="#projects" className="label">
+              Projects
+            </Link>
+            <Link
+              href="https://github.com/Wallfou"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="label"
+            >
+              GitHub
+            </Link>
           </div>
         </div>
       </footer>
