@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { projects, experiences, education } from "@/lib/data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-  ArrowUpRight,
   ChevronDown,
   Mail,
   MapPin,
@@ -91,18 +90,56 @@ const projectCardImages: Record<
 export default function Home() {
   const [openExpIdx, setOpenExpIdx] = useState<number | null>(null);
   const [eduOpen, setEduOpen] = useState(false);
+  const [bostonTime, setBostonTime] = useState<string>("");
+  const [guestbookEntry, setGuestbookEntry] = useState("");
+
+  useEffect(() => {
+    const tick = () => {
+      const now = new Date();
+      const formatted = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/New_York",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZoneName: "short",
+      }).format(now);
+      setBostonTime(formatted);
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div className="pt-20" id="home">
       {/* hero — gallery wall */}
       <section className="min-h-[92vh] flex flex-col justify-between bg-[#f2efea] px-6 md:px-10 lg:px-14 py-8">
         {/* framed artwork */}
-        <div className="flex-1 flex flex-col justify-center max-w-screen-2xl mx-auto w-full">
-          <div className="shadow-[0_16px_80px_-8px_rgba(0,0,0,0.45)]">
+        <div className="flex-1 flex flex-col justify-center max-w-screen-2xl mx-auto w-full relative">
+          {/* vertical edition mark on the right edge */}
+          <div className="hidden md:flex absolute top-0 -right-4 lg:-right-8 h-full items-center pointer-events-none">
+            <span
+              className="label tracking-[0.4em] whitespace-nowrap"
+              style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+            >
+              EDITION 01 / 04
+            </span>
+          </div>
+
+          <div className="shadow-[0_16px_80px_-8px_rgba(0,0,0,0.45)] relative">
             {/* black frame border */}
             <div className="p-4 bg-[#1a1a1a]">
               {/* cream mat board */}
-              <div className="p-6 bg-[#f5f3ef]">
+              <div className="p-6 bg-[#f5f3ef] relative">
+                {/* ON VIEW exhibition pill on the mat */}
+                <div className="absolute top-3 right-3 z-20 hidden md:block">
+                  <span className="inline-flex items-center gap-2 border border-[#1a1a1a]/40 bg-[#f5f3ef] px-2.5 py-1 text-[0.6rem] font-sans font-medium tracking-[0.18em] uppercase text-[#1a1a1a]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a]" />
+                    On View · 2026 –
+                  </span>
+                </div>
+
                 {/* image: fills the mat; text overlays on top */}
                 <div className="relative overflow-hidden min-h-[68vh]">
                   <Image
@@ -158,9 +195,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* gallery caption */}
-          <div className="mt-8 flex justify-between items-center">
-            <span className="label">Scroll to explore</span>
+          {/* museum plaque */}
+          <div className="mt-10 mx-auto w-full max-w-2xl">
+            <div className="border-t border-[#1a1a1a]/30" />
+            <p className="py-4 text-center text-[0.7rem] font-sans tracking-[0.32em] uppercase text-[#1a1a1a]">
+              Wa Fan <span className="mx-3 text-[#1a1a1a]/40">·</span> Software Engineer{" "}
+              <span className="mx-3 text-[#1a1a1a]/40">·</span> Boston{" "}
+              <span className="mx-3 text-[#1a1a1a]/40">·</span> 2026
+            </p>
+            <div className="border-b border-[#1a1a1a]/30" />
           </div>
         </div>
       </section>
@@ -437,75 +480,141 @@ export default function Home() {
         id="contact"
         className="px-8 md:px-16 lg:px-24 max-w-screen-2xl mx-auto py-28 md:py-36"
       >
-        <div className="w-full">
-          <p className="label mb-4">[Reach Out]</p>
-          <h2 className="font-serif text-3xl md:text-4xl font-light mb-12">
-            Open to new opportunities.
+        {/* live boston clock */}
+        <div className="flex items-center justify-between mb-16 md:mb-20">
+          <p className="label">[Reach Out]</p>
+          <p className="text-[0.7rem] font-sans tracking-[0.28em] uppercase text-[#1a1a1a] tabular-nums flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#1a1a1a] animate-pulse" />
+            Boston <span className="text-[#1a1a1a]/40">·</span>{" "}
+            <span className="tabular-nums">{bostonTime || "—"}</span>
+          </p>
+        </div>
+
+        {/* big serif statement */}
+        <div className="mb-20 md:mb-28">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-[0.92] tracking-tight text-[#1a1a1a]">
+            Let&apos;s make
+            <br />
+            something.
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 w-full">
-            {[
-              {
-                icon: <Mail size={18} strokeWidth={1.5} />,
-                label: "Email",
-                value: siteConfig.email,
-                href: `mailto:${siteConfig.email}`,
-                external: false,
-              },
-              {
-                icon: <ExternalLink size={18} strokeWidth={1.5} />,
-                label: "LinkedIn",
-                value: "linkedin.com/in/kennethfan2",
-                href: siteConfig.linkedin,
-                external: true,
-              },
-              {
-                icon: <GitFork size={18} strokeWidth={1.5} />,
-                label: "GitHub",
-                value: "github.com/Wallfou",
-                href: siteConfig.github,
-                external: true,
-              },
-              {
-                icon: <MapPin size={18} strokeWidth={1.5} />,
-                label: "Location",
-                value: siteConfig.location,
-                href: null,
-                external: false,
-              },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="group flex items-start gap-6 p-6 border border-[#ebebeb] rounded-sm hover:border-[#9e9e9e] transition-colors duration-200"
-              >
-                <div className="w-11 h-11 rounded-full bg-[#f5f5f0] flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-[#eeeeea] transition-colors duration-200">
-                  {item.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="label mb-2">{item.label}</p>
-                  {item.href ? (
-                    <a
-                      href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      className="text-[#1a1a1a] font-light text-sm md:text-base hover:underline underline-offset-4 break-all"
-                    >
-                      {item.value}
-                    </a>
-                  ) : (
-                    <span className="text-[#3a3a3a] font-light text-sm md:text-base">
-                      {item.value}
-                    </span>
-                  )}
-                </div>
-                {item.external && item.href && (
-                  <ArrowUpRight
-                    size={14}
-                    className="text-[#c0c0c0] group-hover:text-[#999] transition-colors mt-1 flex-shrink-0"
-                  />
-                )}
+        </div>
+
+        {/* postcard + guestbook */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-14 mb-16">
+          {/* postcard */}
+          <div className="relative bg-[#f5f3ef] border-[1.5px] border-dashed border-[#1a1a1a]/40 p-8 md:p-10 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.25)]">
+            {/* stamp */}
+            <div className="absolute top-5 right-5 w-20 h-24 border-[1.5px] border-dashed border-[#1a1a1a]/50 bg-[#f2efea] flex flex-col items-center justify-center text-center px-2">
+              <span className="font-serif italic text-xs text-[#1a1a1a] leading-tight">
+                Par
+                <br />
+                Avion
+              </span>
+              <div className="w-6 h-px bg-[#1a1a1a]/40 my-1.5" />
+              <span className="text-[0.55rem] font-sans tracking-[0.15em] uppercase text-[#1a1a1a]/70">
+                2026
+              </span>
+            </div>
+
+            <p className="label mb-6">[Postcard]</p>
+
+            <p className="font-serif text-lg md:text-xl italic font-light text-[#1a1a1a] leading-relaxed mb-8 max-w-md">
+              Drop a line, or
+              just say hello!
+            </p>
+
+            {/* address lines */}
+            <div className="space-y-2.5 max-w-sm">
+              <div className="border-b border-[#1a1a1a]/30 pb-1">
+                <span className="label text-[0.6rem]">To</span>
+                <p className="font-serif text-base md:text-lg italic text-[#1a1a1a]">
+                  <a
+                    href={`mailto:${siteConfig.email}`}
+                    className="hover:underline underline-offset-4"
+                  >
+                    {siteConfig.email}
+                  </a>
+                </p>
               </div>
-            ))}
+              <div className="border-b border-[#1a1a1a]/30 pb-1">
+                <span className="label text-[0.6rem]">From</span>
+                <p className="font-serif text-base md:text-lg italic text-[#1a1a1a]">
+                  You
+                </p>
+              </div>
+            </div>
           </div>
+
+          {/* guestbook */}
+          <div className="relative bg-[#f5f3ef] border border-[#1a1a1a]/20 p-8 md:p-10">
+            <div className="flex items-center justify-between mb-6">
+              <p className="label">[Guestbook]</p>
+              <span className="text-[0.6rem] font-sans tracking-[0.2em] uppercase text-[#1a1a1a]/50">
+                Sign your visit
+              </span>
+            </div>
+
+            <p className="font-serif italic text-base md:text-lg text-[#1a1a1a]/70 leading-relaxed mb-5">
+              Leave a note - 
+            </p>
+
+            <textarea
+              value={guestbookEntry}
+              onChange={(e) => setGuestbookEntry(e.target.value)}
+              placeholder="Write something ..."
+              rows={5}
+              className="w-full bg-transparent font-serif italic text-lg md:text-xl text-[#1a1a1a] placeholder:text-[#1a1a1a]/30 focus:outline-none resize-none leading-[2] [background-image:linear-gradient(transparent,transparent_calc(2em-1px),#1a1a1a30_calc(2em-1px),#1a1a1a30_2em)] [background-size:100%_2em] [line-height:2em]"
+            />
+
+            <div className="mt-6 flex items-center justify-between">
+              <span className="text-[0.6rem] font-sans tracking-[0.2em] uppercase text-[#1a1a1a]/40">
+                {guestbookEntry.length > 0
+                  ? `${guestbookEntry.length} characters`
+                  : "Awaiting visitor"}
+              </span>
+              <span className="font-serif italic text-sm text-[#1a1a1a]/40">
+                — anonymous welcome
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* tiny icons row */}
+        <div className="flex items-center justify-center gap-10 pt-10 border-t border-[#1a1a1a]/15">
+          <a
+            href={`mailto:${siteConfig.email}`}
+            aria-label="Email"
+            className="text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors"
+          >
+            <Mail size={18} strokeWidth={1.5} />
+          </a>
+          <a
+            href={siteConfig.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors"
+          >
+            <ExternalLink size={18} strokeWidth={1.5} />
+          </a>
+          <a
+            href={siteConfig.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+            className="text-[#1a1a1a]/60 hover:text-[#1a1a1a] transition-colors"
+          >
+            <GitFork size={18} strokeWidth={1.5} />
+          </a>
+          <span
+            aria-label="Location"
+            className="text-[#1a1a1a]/60 flex items-center gap-2"
+          >
+            <MapPin size={18} strokeWidth={1.5} />
+            <span className="text-[0.7rem] font-sans tracking-[0.2em] uppercase">
+              {siteConfig.location}
+            </span>
+          </span>
         </div>
       </section>
 
