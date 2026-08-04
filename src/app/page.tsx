@@ -2,28 +2,22 @@ import { siteConfig, experiences, projects } from "@/lib/data";
 
 export default function Home() {
   return (
-    <main className="max-w-2xl mx-auto px-6 md:px-0 py-20 md:py-32">
+    <main className="max-w-xl mx-auto px-5 py-12 md:py-16">
       {/* header */}
-      <header className="mb-20 md:mb-28">
-        <p className="label mb-6">
-          {siteConfig.role} · {siteConfig.location}
-        </p>
-        <h1 className="font-serif text-5xl md:text-6xl font-normal tracking-tight mb-8">
+      <header className="mb-10">
+        <h1 className="font-serif text-3xl md:text-4xl font-normal tracking-tight mb-3">
           {siteConfig.name}
         </h1>
-        <p className="max-w-xl text-base md:text-lg leading-relaxed text-[#3a3a3a]">
-          {siteConfig.bio}
-        </p>
+        <p className="text-sm leading-relaxed text-[#3a3a3a]">{siteConfig.bio}</p>
       </header>
 
       {/* experience */}
-      <section id="experience" className="mb-20 md:mb-28">
-        <h2 className="label mb-10">Experience</h2>
-        <div className="space-y-14">
+      <section id="experience" className="mb-10">
+        <div className="space-y-7">
           {experiences.map((exp) => (
             <div key={exp.organization}>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
-                <h3 className="font-serif text-xl md:text-2xl">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-1">
+                <h3 className="font-serif text-lg md:text-xl">
                   {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
                   {exp.organization}
                 </h3>
@@ -31,37 +25,31 @@ export default function Home() {
                   {exp.period}
                 </span>
               </div>
-              <p className="text-xs tracking-wide text-[#8a8a8a] mb-4">
+              <p className="text-xs tracking-wide text-[#8a8a8a] mb-2">
                 {exp.location}
               </p>
-              <ul className="space-y-2.5">
-                {exp.highlights.map((h) => (
-                  <li key={h} className="flex gap-3 text-sm leading-relaxed text-[#3a3a3a]">
-                    <span className="text-[#c0c0c0]">—</span>
-                    <span>{h}</span>
-                  </li>
-                ))}
-              </ul>
+              <p className="text-sm leading-snug text-[#3a3a3a]">
+                {exp.highlights.join(". ")}.
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* projects */}
-      <section id="projects" className="mb-20 md:mb-28">
-        <h2 className="label mb-10">Projects</h2>
-        <div className="space-y-8">
+      <section id="projects" className="mb-10">
+        <div className="space-y-4">
           {projects.map((project) => (
             <div key={project.id}>
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif text-xl md:text-2xl inline-block"
+                className="font-serif text-lg md:text-xl inline-block"
               >
                 {project.title}
               </a>
-              <p className="text-sm text-[#8a8a8a] mt-1">
+              <p className="text-xs text-[#8a8a8a] mt-0.5">
                 {project.subtitle} <span className="text-[#c0c0c0]">·</span>{" "}
                 {project.date}
               </p>
@@ -71,9 +59,8 @@ export default function Home() {
       </section>
 
       {/* contact */}
-      <section id="contact" className="mb-20">
-        <h2 className="label mb-10">Contact</h2>
-        <div className="space-y-2 text-base">
+      <section id="contact" className="mb-10">
+        <div className="space-y-1 text-sm">
           <p>
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           </p>
@@ -97,7 +84,7 @@ export default function Home() {
       </section>
 
       {/* footer */}
-      <footer className="pt-10 border-t border-[#e8e8e8] text-xs tracking-wide text-[#8a8a8a]">
+      <footer className="pt-6 border-t border-[#e8e8e8] text-xs tracking-wide text-[#8a8a8a]">
         © 2026 {siteConfig.name}
       </footer>
     </main>

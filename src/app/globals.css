@@ -41,15 +41,6 @@ body {
   font-family: var(--font-sans);
 }
 
-.label {
-  font-size: 0.7rem;
-  font-family: var(--font-sans);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--muted);
-}
-
 /* every link on the page fades from black to gray on hover */
 a {
   color: inherit;
