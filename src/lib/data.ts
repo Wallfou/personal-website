@@ -16,8 +16,10 @@ export const experiences = [
     location: "Boston, MA",
     period: "Jul 2026 – Present",
     highlights: [
-      "Leading an end-to-end observability overhaul of a Tier 1 service by defining 4 SLOs, migrating all alerting to Terraform, and instrumenting the AI pipeline — projected to cut incident detection from hours to minutes",
-      "Contributing to an AI health guidance service with an event-driven LLM pipeline that processes 18K+ clinical events weekly from 6 data sources into personalized, clinician-reviewed action plans",
+      "Shipped a safety-review pipeline that catches LLM over-refusals in live daily traffic using a scheduled Cloud Run job and a deterministic classifier, giving the team an audit process for failure modes that had gone unmeasured",
+      "Traced an unsafe medication-dosing behavior back to policy after a member complaint, replacing a blanket refusal rule with a three-tier decision policy and pinning the fix in place with a 16-case regression suite",
+      "Rebuilt an eval suite's grading layer from 57 brittle regex heuristics into an LLM-as-judge design that scores responses semantically against per-case rubrics, calibrated to agree with human reviewers over 70% of the time",
+      "Wrote an orchestration engine for AI clinical-safety review that runs its checks concurrently and fails open, so a failing check never blocks plan generation",
     ],
   },
   {
@@ -26,10 +28,9 @@ export const experiences = [
     location: "McLean, VA",
     period: "Jun 2026 – Jul 2026",
     highlights: [
-      "Architected a secure cross-environment data promotion tool via batch export/import endpoints, preserving air-gapped AWS infrastructure boundaries and eliminating manual TypeORM migration scripts",
-      "Implemented an in-place content update API for Bank Claims Questionnaires, cutting workflow delays from ~1 hour to seconds",
-      "Optimized a memory-heavy database scan into a single index-only SQL aggregate, maintaining throughput across millions of rows while using pessimistic write locks to mitigate race conditions",
-      "Engineered a state-bound JWT confirmation flow to prevent consent-then-swap vulnerabilities",
+      "Added in-place content updates to a NestJS service fielding 300k+ API calls a day, retiring a Slack-and-PR migration process and shrinking turnaround from over a week to seconds",
+      "Designed a stateless JWT confirmation flow that enforces single-use consent without a database ledger, binding each token to a body hash and state fingerprint to close off consent-then-swap and replay attacks",
+      "Built secure cross-environment data promotion through batch export/import endpoints, keeping air-gapped AWS boundaries intact and removing the need for 1000+ line migration PRs",
     ],
   },
   {
@@ -38,13 +39,22 @@ export const experiences = [
     location: "Boston, MA",
     period: "Jan 2025 – Apr 2026",
     highlights: [
-      "Led 10+ engineers maintaining a React/Node ERP for 60+ users across 4 sub-teams, raising user satisfaction from 4 to 8/10",
-      "Developed and led an onboarding program for 10 new members, hosting weekly frontend/backend lectures and office hours that increased member retention by ~40%",
+      "Led 10+ engineers maintaining a React/Node ERP for 60+ users across 4 sub-teams, shipping calendar releases that cut scheduling conflicts and lifted satisfaction from 4 to 8/10",
+      "Built and ran an onboarding program for 10 new members with weekly frontend and backend lectures plus office hours, raising retention by roughly 40%",
     ],
   },
 ];
 
 export const projects = [
+  {
+    id: "medora",
+    title: "Medora",
+    subtitle:
+      "Offline polypharmacy assistant on a fine-tuned Gemma 4, cross-referencing 1.4M+ drug interactions",
+    date: "Apr 2026 – May 2026",
+    tech: ["Gemma 4", "Python", "Ollama", "Unsloth", "LoRA", "SQLite"],
+    github: "https://github.com/Wallfou/medora",
+  },
   {
     id: "ai-ticket-generator",
     title: "Ticketeer",
@@ -60,14 +70,6 @@ export const projects = [
     date: "Jan 2026 – Present",
     tech: ["TypeScript", "React", "Python", "Flask", "AWS"],
     github: "https://github.com/Wallfou/NBA-PICKS",
-  },
-  {
-    id: "medora",
-    title: "Medora",
-    subtitle: "Offline polypharmacy assistant powered by Gemma 4",
-    date: "Mar 2026 – May 2026",
-    tech: ["Gemma 4", "Python", "Ollama", "Unsloth"],
-    github: "https://github.com/Wallfou/medora",
   },
   {
     id: "pacman-rl",
