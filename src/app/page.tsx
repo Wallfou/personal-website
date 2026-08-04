@@ -35,6 +35,11 @@ export default function Home() {
 
       {/* projects */}
       <section id="projects" className="mb-10">
+        <p className="text-sm leading-snug text-[#3a3a3a] mb-4">
+          Here are some personal projects that I have worked on over the past two
+          years. These were important stepping stones for me, and I started all of
+          them out of curiosity for an unfamiliar topic/concept.
+        </p>
         <div className="space-y-2">
           {projects.map((project) => (
             <div
@@ -50,8 +55,7 @@ export default function Home() {
                 {project.title}
               </a>
               <span className="text-xs tracking-wide whitespace-nowrap text-[#8a8a8a]">
-                {project.subtitle} <span className="text-[#c0c0c0]">·</span>{" "}
-                {project.date}
+                {project.subtitle}
               </span>
             </div>
           ))}
