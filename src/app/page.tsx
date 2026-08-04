@@ -16,7 +16,7 @@ export default function Home() {
         <div className="space-y-7">
           {experiences.map((exp) => (
             <div key={exp.organization}>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-1">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-2">
                 <h3 className="font-serif text-lg md:text-xl">
                   {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
                   {exp.organization}
@@ -25,9 +25,6 @@ export default function Home() {
                   {exp.period}
                 </span>
               </div>
-              <p className="text-xs tracking-wide text-[#8a8a8a] mb-2">
-                {exp.location}
-              </p>
               <p className="text-sm leading-snug text-[#3a3a3a]">
                 {exp.highlights.join(". ")}.
               </p>
