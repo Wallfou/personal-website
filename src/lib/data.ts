@@ -49,8 +49,7 @@ export const projects = [
   {
     id: "medora",
     title: "Medora",
-    subtitle:
-      "Offline polypharmacy assistant on a fine-tuned Gemma 4, cross-referencing 1.4M+ drug interactions",
+    subtitle: "Offline polypharmacy assistant",
     date: "Apr 2026 – May 2026",
     tech: ["Gemma 4", "Python", "Ollama", "Unsloth", "LoRA", "SQLite"],
     github: "https://github.com/Wallfou/medora",
@@ -90,7 +89,7 @@ export const projects = [
   {
     id: "cloud-autoscaling",
     title: "Cloud Autoscaling Simulation",
-    subtitle: "Round-robin cloud autoscaling simulator",
+    subtitle: "Round-robin scheduling simulator",
     date: "Mar 2026 – Apr 2026",
     tech: ["C++", "Round Robin Scheduling", "Cloud Autoscaling"],
     github: "https://github.com/Wallfou/cloud-autoscaling-simulator",

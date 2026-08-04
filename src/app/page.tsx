@@ -2,7 +2,7 @@ import { siteConfig, experiences, projects } from "@/lib/data";
 
 export default function Home() {
   return (
-    <main className="max-w-xl mx-auto px-5 py-12 md:py-16">
+    <main className="max-w-[39.6rem] mx-auto px-5 py-12 md:py-16">
       {/* header */}
       <header className="mb-10">
         <h1 className="font-serif text-3xl md:text-4xl font-normal tracking-tight mb-3">
@@ -35,21 +35,24 @@ export default function Home() {
 
       {/* projects */}
       <section id="projects" className="mb-10">
-        <div className="space-y-4">
+        <div className="space-y-2">
           {projects.map((project) => (
-            <div key={project.id}>
+            <div
+              key={project.id}
+              className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5"
+            >
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif text-lg md:text-xl inline-block"
+                className="font-serif text-lg md:text-xl"
               >
                 {project.title}
               </a>
-              <p className="text-xs text-[#8a8a8a] mt-0.5">
+              <span className="text-xs tracking-wide whitespace-nowrap text-[#8a8a8a]">
                 {project.subtitle} <span className="text-[#c0c0c0]">·</span>{" "}
                 {project.date}
-              </p>
+              </span>
             </div>
           ))}
         </div>
