@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Wa Fan — Software Engineer",
+  title: "Kenneth Fan",
   description:
-    "Software engineer based in Boston. Building thoughtful products with sharp engineering.",
+    "Kenneth Fan — Computer Science student at Northeastern, software engineer co-op at Function Health.",
   openGraph: {
-    title: "Wa Fan — Software Engineer",
-    description: "Software engineer based in Boston. Building thoughtful products with sharp engineering.",
+    title: "Kenneth Fan",
+    description:
+      "Kenneth Fan — Computer Science student at Northeastern, software engineer co-op at Function Health.",
     type: "website",
   },
 };
@@ -20,9 +20,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col antialiased bg-[#f2efea] text-[#1a1a1a]">
-        <Navbar />
-        <main className="flex-1">{children}</main>
+      <body className="min-h-full antialiased bg-[#ffffff] text-[#111111]">
+        {children}
       </body>
     </html>
   );
