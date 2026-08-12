@@ -13,6 +13,7 @@ export const experiences = [
   {
     role: "Software Engineer Co-op",
     organization: "Function Health",
+    website: "https://www.functionhealth.com",
     location: "Boston, MA",
     period: "Jul 2026 – Present",
     highlights: [
@@ -25,6 +26,7 @@ export const experiences = [
   {
     role: "Software Engineer Intern",
     organization: "Capital One",
+    website: "https://www.capitalone.com",
     location: "McLean, VA",
     period: "Jun 2026 – Jul 2026",
     highlights: [
@@ -36,6 +38,7 @@ export const experiences = [
   {
     role: "Software Tech Lead",
     organization: "Northeastern Electric Racing Team",
+    website: "https://electricracing.northeastern.edu",
     location: "Boston, MA",
     period: "Jan 2025 – Apr 2026",
     highlights: [

@@ -53,13 +53,13 @@ a:focus-visible {
   color: var(--muted);
 }
 
-/* project titles: deep furniture green, fading on hover */
-a.project-link {
+/* deep furniture green links, darkening on hover */
+a.green-link {
   color: #355e3b;
 }
 
-a.project-link:hover,
-a.project-link:focus-visible {
+a.green-link:hover,
+a.green-link:focus-visible {
   color: #2a4a2f;
 }
 

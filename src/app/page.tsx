@@ -18,7 +18,14 @@ export default function Home() {
             <div key={exp.organization}>
               <h3 className="font-serif text-lg md:text-xl mb-2">
                 {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
-                {exp.organization}
+                <a
+                  href={exp.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="green-link"
+                >
+                  {exp.organization}
+                </a>
               </h3>
               <p className="text-sm leading-snug text-[#3a3a3a]">
                 {exp.highlights.join(". ")}.
@@ -40,7 +47,7 @@ export default function Home() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-link font-bold"
+                className="green-link font-bold"
               >
                 {project.title}
               </a>
