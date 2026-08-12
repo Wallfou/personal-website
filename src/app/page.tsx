@@ -38,24 +38,19 @@ export default function Home() {
         <p className="text-sm leading-snug text-[#3a3a3a] mb-4">
           Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon.
         </p>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {projects.map((project) => (
-            <div
-              key={project.id}
-              className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5"
-            >
+            <p key={project.id} className="text-sm leading-snug">
               <a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-serif text-lg md:text-xl"
+                className="text-[#355e3b] font-medium"
               >
                 {project.title}
               </a>
-              <span className="text-xs tracking-wide whitespace-nowrap text-[#8a8a8a]">
-                {project.subtitle}
-              </span>
-            </div>
+              <span className="text-[#8a8a8a]">, {project.subtitle}</span>
+            </p>
           ))}
         </div>
       </section>
