@@ -45,7 +45,7 @@ export default function Home() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#355e3b] font-medium"
+                className="project-link font-medium"
               >
                 {project.title}
               </a>

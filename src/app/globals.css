@@ -53,6 +53,16 @@ a:focus-visible {
   color: var(--muted);
 }
 
+/* project titles: deep furniture green, fading on hover */
+a.project-link {
+  color: #355e3b;
+}
+
+a.project-link:hover,
+a.project-link:focus-visible {
+  color: #2a4a2f;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }
