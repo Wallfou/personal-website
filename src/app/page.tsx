@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="font-serif text-3xl md:text-4xl font-normal tracking-tight mb-3">
           {siteConfig.name}
         </h1>
-        <p className="text-sm leading-relaxed text-[#3a3a3a]">{siteConfig.bio}</p>
+        <p className="text-sm leading-snug text-[#3a3a3a]">{siteConfig.bio}</p>
       </header>
 
       {/* experience */}
@@ -16,15 +16,10 @@ export default function Home() {
         <div className="space-y-7">
           {experiences.map((exp) => (
             <div key={exp.organization}>
-              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5 mb-2">
-                <h3 className="font-serif text-lg md:text-xl">
-                  {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
-                  {exp.organization}
-                </h3>
-                <span className="text-xs tracking-wide whitespace-nowrap text-[#8a8a8a]">
-                  {exp.period}
-                </span>
-              </div>
+              <h3 className="font-serif text-lg md:text-xl mb-2">
+                {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
+                {exp.organization}
+              </h3>
               <p className="text-sm leading-snug text-[#3a3a3a]">
                 {exp.highlights.join(". ")}.
               </p>
@@ -45,7 +40,7 @@ export default function Home() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="project-link font-medium"
+                className="project-link font-bold"
               >
                 {project.title}
               </a>
