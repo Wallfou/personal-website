@@ -22,7 +22,7 @@ export default function Home() {
                   href={exp.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="green-link"
+                  className="green-link font-bold"
                 >
                   {exp.organization}
                 </a>

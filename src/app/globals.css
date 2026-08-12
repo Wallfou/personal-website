@@ -55,12 +55,12 @@ a:focus-visible {
 
 /* deep furniture green links, darkening on hover */
 a.green-link {
-  color: #355e3b;
+  color: #1f8a3f;
 }
 
 a.green-link:hover,
 a.green-link:focus-visible {
-  color: #2a4a2f;
+  color: #176b31;
 }
 
 ::-webkit-scrollbar {
