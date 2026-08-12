@@ -63,6 +63,22 @@ a.green-link:focus-visible {
   color: #0d4d20;
 }
 
+/* nav links: reserve bold width so the active/bold state never shifts siblings */
+.nav-link {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.nav-link::after {
+  content: attr(data-label);
+  font-weight: 700;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

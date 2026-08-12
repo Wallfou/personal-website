@@ -17,7 +17,7 @@ export default function Home() {
         <div className="space-y-7">
           {experiences.map((exp) => (
             <div key={exp.organization}>
-              <h3 className="font-serif text-lg md:text-xl mb-2">
+              <h3 className="font-serif text-base md:text-lg mb-2">
                 {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
                 <a
                   href={exp.website}
