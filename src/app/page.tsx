@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="max-w-[39.6rem] mx-auto px-5 py-12 md:py-16">
+    <main className="max-w-[39.6rem] mx-auto px-5 pt-20 pb-12 md:pt-28 md:pb-16">
       <Nav />
 
       {/* about me */}
