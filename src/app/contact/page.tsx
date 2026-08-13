@@ -1,6 +1,5 @@
 import { siteConfig } from "@/lib/data";
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 
 export default function ContactPage() {
   return (
@@ -31,8 +30,6 @@ export default function ContactPage() {
           </p>
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }

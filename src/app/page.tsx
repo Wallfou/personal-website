@@ -1,6 +1,5 @@
 import { siteConfig, experiences } from "@/lib/data";
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -36,8 +35,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }

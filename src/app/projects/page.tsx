@@ -1,6 +1,5 @@
 import { projects } from "@/lib/data";
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 
 export default function ProjectsPage() {
   return (
@@ -28,8 +27,6 @@ export default function ProjectsPage() {
           ))}
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }
