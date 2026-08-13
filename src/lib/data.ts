@@ -17,10 +17,10 @@ export const experiences = [
     location: "Boston, MA",
     period: "Jul 2026 – Present",
     highlights: [
-      "I'm currently enjoying my time at Function Health, working on the Navigating Care team to build out Function's action plan generation service and the AI chat feature",
-      "My work has been focused on making our AI-generated health plans safe and trustworthy, from catching the cases where the model over-refuses or gives shaky medication advice to building the safety checks that review each plan before it reaches a member",
-      "A lot of it comes down to figuring out how we actually measure whether an LLM is doing a good job in a health setting, so I've spent a good amount of time reworking how we grade and evaluate our responses",
-      "It's been a great place to learn what it really takes to ship AI features responsibly in a space where getting the details right genuinely matters",
+      "I'm currently enjoying my time at Function Health, working on the Navigating Care team to build out Function's health data analysis features",
+      "For now, my work has been focused on contributing to the safety/value of our AI chat service",
+      "A lot of it comes down to building out the evaluation infrastructure, specifically tackling the sensitivity of the model's medical guardrails",
+      "I have also been contributing to Function's action plan service, working on roadmap features that revamp user experience and observability infrastructure",
     ],
   },
   {
