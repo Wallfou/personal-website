@@ -9,7 +9,7 @@ export default function ContactPage() {
 
       {/* contact */}
       <section id="contact" className="mb-10">
-        <div className="space-y-1 text-sm">
+        <div className="space-y-1 text-base">
           <p>
             <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
           </p>

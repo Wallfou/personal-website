@@ -13,7 +13,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex gap-6 text-sm mb-16">
+    <nav className="flex gap-6 text-base mb-16">
       {links.map((link) => {
         const active = pathname === link.href;
         return (
