@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export default function ProjectsPage() {
   return (
-    <main className="max-w-[39.6rem] mx-auto px-5 pt-20 pb-12 md:pt-28 md:pb-16">
+    <main className="max-w-[43rem] mx-auto px-5 pt-20 pb-12 md:pt-28 md:pb-16">
       <Nav />
 
       {/* projects */}

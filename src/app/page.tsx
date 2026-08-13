@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="max-w-[39.6rem] mx-auto px-5 pt-20 pb-12 md:pt-28 md:pb-16">
+    <main className="max-w-[43rem] mx-auto px-5 pt-20 pb-12 md:pt-28 md:pb-16">
       <Nav />
 
       {/* about me */}
@@ -17,8 +17,7 @@ export default function Home() {
         <div className="space-y-7">
           {experiences.map((exp) => (
             <div key={exp.organization}>
-              <h3 className="font-serif text-lg md:text-xl mb-2">
-                {exp.role} <span className="text-[#8a8a8a]">·</span>{" "}
+              <h3 className="font-serif text-base md:text-lg mb-2">
                 <a
                   href={exp.website}
                   target="_blank"
@@ -26,7 +25,9 @@ export default function Home() {
                   className="green-link font-bold"
                 >
                   {exp.organization}
-                </a>
+                </a>{" "}
+                <span className="text-[#8a8a8a]">·</span>{" "}
+                <span className="lowercase">{exp.role}</span>
               </h3>
               <p className="text-base leading-snug text-[#3a3a3a]">
                 {exp.highlights.join(". ")}.

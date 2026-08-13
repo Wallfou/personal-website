@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>about — vine concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --green: #14682c;
+    --green-dark: #0d4d20;
+    --fg: #111;
+    --muted: #8a8a8a;
+    --body: #3a3a3a;
+    --border: #e8e8e8;
+    --font: "Source Serif 4", Georgia, "Times New Roman", serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: #fff;
+    color: var(--fg);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* scroll progress — a thin green stem filling as you read */
+  #progress {
+    position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+    background: var(--green); z-index: 50; transition: width .08s linear;
+  }
+
+  /* cursor spotlight — a faint green breath that follows you */
+  #spot {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: radial-gradient(180px circle at var(--x, -100px) var(--y, -100px),
+      rgba(20,104,44,.06), transparent 70%);
+    transition: background .1s ease;
+  }
+
+  main {
+    position: relative; z-index: 2;
+    max-width: 39.6rem; margin: 0 auto;
+    padding: 7rem 1.25rem 4rem;
+  }
+
+  /* the vine grows down the left margin of the column */
+  #vine { position: absolute; top: 0; left: 0; overflow: visible; z-index: 1; pointer-events: none; }
+  #vine path.stem {
+    fill: none; stroke: var(--green); stroke-width: 1.6; stroke-linecap: round;
+    opacity: .55;
+  }
+  #vine .leaf {
+    fill: var(--green); opacity: 0; transform: scale(0);
+    transform-box: fill-box; transform-origin: 0 50%;
+    transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .5s ease;
+  }
+  #vine .leaf.on { opacity: .5; transform: scale(1); }
+
+  nav { display: flex; gap: 1.5rem; font-size: 1rem; margin-bottom: 4rem; }
+  nav a {
+    position: relative; color: var(--green); text-decoration: none; font-weight: 500;
+  }
+  nav a::after {
+    content: ""; position: absolute; left: 0; bottom: -3px; height: 1.5px; width: 100%;
+    background: var(--green); transform: scaleX(0); transform-origin: left;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  nav a:hover::after { transform: scaleX(1); }
+
+  header { margin-bottom: 2.5rem; }
+  .bio { font-size: 1rem; line-height: 1.45; color: var(--body); margin: 0; }
+
+  section { margin-bottom: 2.5rem; }
+  .job { margin-bottom: 1.75rem; }
+  h3 { font-size: 1.125rem; font-weight: 400; margin: 0 0 .5rem; }
+  h3 .sep { color: var(--muted); }
+  h3 a { color: var(--green); font-weight: 700; text-decoration: none; }
+  h3 a:hover { color: var(--green-dark); }
+  .desc { font-size: 1rem; line-height: 1.45; color: var(--body); margin: 0; }
+
+  footer { padding-top: .75rem; border-top: 1px solid var(--border);
+    font-size: 1rem; letter-spacing: .02em; color: var(--muted); }
+
+  /* staggered entrance */
+  .reveal { opacity: 0; transform: translateY(10px); }
+  .reveal.in { opacity: 1; transform: none; transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+
+  @media (max-width: 860px) { #vine { display: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal.in, #vine .leaf { transition: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+  <div id="progress"></div>
+  <div id="spot"></div>
+  <svg id="vine" width="60" height="100" aria-hidden="true"></svg>
+
+  <main>
+    <nav class="reveal">
+      <a href="#">about me</a>
+      <a href="#">projects</a>
+      <a href="#">contact</a>
+    </nav>
+
+    <header class="reveal">
+      <p class="bio">Hello! My name is Kenneth, I'm currently a Computer Science student at Northeastern. Right now I'm working as a software engineer Co-op at Function Health, working on a pretty cool LLM-powered proactive health care service. I also previously worked at Capital One as an intern, and I'm looking for more opportunities in 2027, so please reach out!</p>
+    </header>
+
+    <section>
+      <div class="job reveal">
+        <h3>Software Engineer Co-op <span class="sep">·</span> <a href="#">Function Health</a></h3>
+        <p class="desc">I'm currently enjoying my time at Function Health, working on the Navigating Care team to build out Function's health data analysis features. For now, my work has been focused on contributing to the safety/value of our AI chat service. A lot of it comes down to building out the evaluation infrastructure, specifically tackling the sensitivity of the model's medical guardrails.</p>
+      </div>
+      <div class="job reveal">
+        <h3>Software Engineer Intern <span class="sep">·</span> <a href="#">Capital One</a></h3>
+        <p class="desc">I worked on an internal bank case questionnaire management service with substantial impact, quantified to be around 300k+ API calls per day. To resolve a self-servicing bottleneck, I implemented in-place content updates and cross-environment data promotion, shrinking a week-long process down to seconds.</p>
+      </div>
+      <div class="job reveal">
+        <h3>Software Tech Lead <span class="sep">·</span> <a href="#">Northeastern Electric Racing Team</a></h3>
+        <p class="desc">I was part of the software department that developed the ERP system used by ~60 students as a source of truth for schedules, finances, and manufacturing. I led scheduling features, then transitioned into the Launchpad onboarding program, hosting weekly full-stack lectures to improve retention.</p>
+      </div>
+    </section>
+
+    <footer class="reveal">© 2026 Kenneth Fan</footer>
+  </main>
+
+<script>
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // scroll progress
+  const bar = document.getElementById("progress");
+  function onScroll() {
+    const h = document.documentElement;
+    const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+    bar.style.width = (p * 100) + "%";
+  }
+  document.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // cursor spotlight
+  const spot = document.getElementById("spot");
+  window.addEventListener("pointermove", (e) => {
+    spot.style.setProperty("--x", e.clientX + "px");
+    spot.style.setProperty("--y", e.clientY + "px");
+  });
+
+  // staggered reveal
+  const items = [...document.querySelectorAll(".reveal")];
+  items.forEach((el, i) => setTimeout(() => el.classList.add("in"), 120 + i * 130));
+
+  // build + grow the vine along the left margin of the column
+  function buildVine() {
+    if (window.innerWidth <= 860) return;
+    const svg = document.getElementById("vine");
+    const main = document.querySelector("main");
+    const rect = main.getBoundingClientRect();
+    const docTop = window.scrollY + rect.top;
+    const H = main.offsetHeight;
+    const colLeft = rect.left;
+    const X = Math.max(colLeft - 26, 12);        // sit just left of the text column
+    svg.style.left = "0px";
+    svg.style.top = docTop + "px";
+    svg.setAttribute("width", X + 40);
+    svg.setAttribute("height", H);
+    svg.setAttribute("viewBox", `0 0 ${X + 40} ${H}`);
+    svg.innerHTML = "";
+
+    // wavy stem
+    const amp = 10, step = 90;
+    let d = `M ${X} 0`;
+    let prevX = X, prevY = 0, dir = 1;
+    for (let y = step; y <= H; y += step) {
+      const cx = X + amp * dir;
+      d += ` Q ${cx} ${(prevY + y) / 2} ${X} ${y}`;
+      prevY = y; dir *= -1;
+    }
+    const stem = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    stem.setAttribute("class", "stem");
+    stem.setAttribute("d", d);
+    svg.appendChild(stem);
+
+    const len = stem.getTotalLength();
+    const dur = reduce ? 0 : 2400;
+    stem.style.strokeDasharray = len;
+    stem.style.strokeDashoffset = reduce ? 0 : len;
+    if (!reduce) {
+      stem.style.transition = `stroke-dashoffset ${dur}ms ease-out`;
+      requestAnimationFrame(() => requestAnimationFrame(() => { stem.style.strokeDashoffset = 0; }));
+    }
+
+    // leaves sprout as the stem passes them
+    const leaves = 9;
+    for (let i = 1; i <= leaves; i++) {
+      const at = (i / (leaves + 1)) * len;
+      const pt = stem.getPointAtLength(at);
+      const side = i % 2 === 0 ? 1 : -1;
+      const leaf = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const w = 13, h2 = 7;
+      const dx = side * 2;
+      const path = `M ${pt.x + dx} ${pt.y} q ${side*w*0.5} ${-h2} ${side*w} 0 q ${-side*w*0.5} ${h2} ${-side*w} 0 z`;
+      leaf.setAttribute("d", path);
+      leaf.setAttribute("class", "leaf");
+      svg.appendChild(leaf);
+      const delay = reduce ? 0 : (at / len) * dur;
+      setTimeout(() => leaf.classList.add("on"), delay);
+    }
+  }
+  window.addEventListener("load", buildVine);
+  let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(buildVine, 200); });
+</script>
+</body>
+</html>
