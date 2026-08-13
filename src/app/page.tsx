@@ -23,7 +23,7 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="accent-link font-bold"
                 >
-                  {exp.organization}
+                  [{exp.organization}]
                 </a>
               </h3>
               <p className="text-base leading-snug text-[#3a3a3a]">
