@@ -19,7 +19,7 @@ export default function ProjectsPage() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="green-link font-bold"
+                className="green-link font-bold lowercase"
               >
                 {project.title}
               </a>
