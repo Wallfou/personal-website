@@ -17,10 +17,10 @@ export const experiences = [
     location: "Boston, MA",
     period: "Jul 2026 – Present",
     highlights: [
-      "Shipped a safety-review pipeline that catches LLM over-refusals in live daily traffic using a scheduled Cloud Run job and a deterministic classifier, giving the team an audit process for failure modes that had gone unmeasured",
-      "Traced an unsafe medication-dosing behavior back to policy after a member complaint, replacing a blanket refusal rule with a three-tier decision policy and pinning the fix in place with a 16-case regression suite",
-      "Rebuilt an eval suite's grading layer from 57 brittle regex heuristics into an LLM-as-judge design that scores responses semantically against per-case rubrics, calibrated to agree with human reviewers over 70% of the time",
-      "Wrote an orchestration engine for AI clinical-safety review that runs its checks concurrently and fails open, so a failing check never blocks plan generation",
+      "I'm currently enjoying my time at Function Health, working on the Navigating Care team to build out Function's action plan generation service and the AI chat feature",
+      "My work has been focused on making our AI-generated health plans safe and trustworthy, from catching the cases where the model over-refuses or gives shaky medication advice to building the safety checks that review each plan before it reaches a member",
+      "A lot of it comes down to figuring out how we actually measure whether an LLM is doing a good job in a health setting, so I've spent a good amount of time reworking how we grade and evaluate our responses",
+      "It's been a great place to learn what it really takes to ship AI features responsibly in a space where getting the details right genuinely matters",
     ],
   },
   {
