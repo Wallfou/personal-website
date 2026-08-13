@@ -21,11 +21,11 @@ export default function Home() {
                   href={exp.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="green-link font-bold"
+                  className="accent-link font-bold"
                 >
                   {exp.organization}
                 </a>{" "}
-                <span className="text-[#8a8a8a]">·</span>{" "}
+                <span className="text-[#6b6b6b]">·</span>{" "}
                 <span className="lowercase">{exp.role}</span>
               </h3>
               <p className="text-base leading-snug text-[#3a3a3a]">

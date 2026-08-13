@@ -21,7 +21,7 @@ export default function Nav() {
             key={link.href}
             href={link.href}
             data-label={link.label}
-            className={`green-link nav-link ${active ? "font-bold" : "font-medium"}`}
+            className={`accent-link nav-link ${active ? "font-bold" : "font-medium"}`}
           >
             {link.label}
           </Link>

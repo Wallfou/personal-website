@@ -18,11 +18,11 @@ export default function ProjectsPage() {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="green-link font-bold lowercase"
+                className="accent-link font-bold lowercase"
               >
                 {project.title}
               </a>
-              <span className="text-[#8a8a8a]">, {project.subtitle}</span>
+              <span className="text-[#6b6b6b]">, {project.subtitle}</span>
             </p>
           ))}
         </div>

@@ -4,9 +4,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111111;
-  --muted: #8a8a8a;
-  --border: #e8e8e8;
+  --foreground: #1c1c1c;
+  --muted: #6b6b6b;
+  --border: #d4d4d4;
+  --accent: #ea580c;
+  --accent-dark: #c2410c;
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-sans: "Source Serif 4", Georgia, "Times New Roman", serif;
 }
@@ -53,14 +55,14 @@ a:focus-visible {
   color: var(--muted);
 }
 
-/* deep furniture green links, darkening on hover */
-a.green-link {
-  color: #14682c;
+/* safety-orange accent links, darkening on hover */
+a.accent-link {
+  color: var(--accent);
 }
 
-a.green-link:hover,
-a.green-link:focus-visible {
-  color: #0d4d20;
+a.accent-link:hover,
+a.accent-link:focus-visible {
+  color: var(--accent-dark);
 }
 
 /* nav links: reserve bold width so the active/bold state never shifts siblings */
