@@ -20,7 +20,7 @@ export const experiences = [
       "I'm currently enjoying my time at Function Health, working on the Navigating Care team to build out Function's health data analysis features",
       "For now, my work has been focused on contributing to the safety/value of our AI chat service",
       "A lot of it comes down to building out the evaluation infrastructure, specifically tackling the sensitivity of the model's medical guardrails",
-      "I have also been contributing to Function's action plan service, working on roadmap features that revamp user experience and observability infrastructure",
+      "I have also been contributing to Function's action plan service, mainly working on roadmap features to revamp user experiences on both mobile and web applications, as well as architecting observability infrastructure to improve monitoring",
     ],
   },
   {
@@ -30,9 +30,11 @@ export const experiences = [
     location: "McLean, VA",
     period: "Jun 2026 – Jul 2026",
     highlights: [
-      "Added in-place content updates to a NestJS service fielding 300k+ API calls a day, retiring a Slack-and-PR migration process and shrinking turnaround from over a week to seconds",
-      "Designed a stateless JWT confirmation flow that enforces single-use consent without a database ledger, binding each token to a body hash and state fingerprint to close off consent-then-swap and replay attacks",
-      "Built secure cross-environment data promotion through batch export/import endpoints, keeping air-gapped AWS boundaries intact and removing the need for 1000+ line migration PRs",
+      "I worked on an internal bank case questionnaire management service with substantial impact, quantified to be around 300k+ API calls per day",
+      "The service's critical bottleneck was the lack of self-servicing capabilities",
+      "This meant internal agents had to rely on engineers to apply questionnaire updates through PR reviews and database migrations",
+      "To resolve the issue, I implemented features that allow in-place content updates and cross-environment data promotion, eliminating the tedious review/migration process completely",
+      "The best part of this internship was hearing the reactions when I told other engineers that the process, which used to take up to a week, can now be done in seconds",
     ],
   },
   {
@@ -42,8 +44,10 @@ export const experiences = [
     location: "Boston, MA",
     period: "Jan 2025 – Apr 2026",
     highlights: [
-      "Led 10+ engineers maintaining a React/Node ERP for 60+ users across 4 sub-teams, shipping calendar releases that cut scheduling conflicts and lifted satisfaction from 4 to 8/10",
-      "Built and ran an onboarding program for 10 new members with weekly frontend and backend lectures plus office hours, raising retention by roughly 40%",
+      "I was a part of the software department that developed the enterprise resource planning system at Northeastern's electric racing club",
+      "We had about 60 students across different engineering groups who used the system as a source of truth for schedules, finances, and manufacturing",
+      "I was the software lead responsible for managing work around scheduling features",
+      "Later, I transitioned into a leading member of the Launchpad onboarding program, hosting weekly lectures on full-stack development to improve new member retention",
     ],
   },
 ];
