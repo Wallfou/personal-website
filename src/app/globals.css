@@ -7,8 +7,8 @@
   --foreground: #1c1c1c;
   --muted: #6b6b6b;
   --border: #d4d4d4;
-  --accent: #fb5607;
-  --accent-dark: #e14a06;
+  --accent: #14452f;
+  --accent-dark: #0b2e1f;
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-sans: "Source Serif 4", Georgia, "Times New Roman", serif;
 }
@@ -55,7 +55,7 @@ a:focus-visible {
   color: var(--muted);
 }
 
-/* safety-orange accent links, darkening on hover */
+/* british racing green accent links, darkening on hover */
 a.accent-link {
   color: var(--accent);
 }
