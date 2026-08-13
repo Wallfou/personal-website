@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Kenneth Fan",
   role: "Software Engineer",
   location: "Boston, MA",
-  bio: "Hello! I'm Kenneth, a CS student at Northeastern. Currently, I'm working as a software engineer Co-op at Function Health, contributing to a pretty cool AI-powered proactive health care service. Before this, I worked at Capital One on internal questionnaire management. I'm looking for more opportunities in 2027, so please reach out!",
+  bio: "Hello! I'm Kenneth, a CS student at Northeastern. Currently, I'm working as a software engineer Co-op at Function Health, contributing to a pretty cool AI-powered proactive health care service. Before this, I worked at Capital One on internal questionnaire management as an intern. I'm looking for more opportunities in 2027, so please reach out!",
   email: "wafan2004@gmail.com",
   phone: "856-571-9766",
   linkedin: "https://www.linkedin.com/in/kennethfan2/",

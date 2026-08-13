@@ -16,7 +16,7 @@ export default function Home() {
         <div className="space-y-7">
           {experiences.map((exp) => (
             <div key={exp.organization}>
-              <h3 className="font-serif text-base md:text-lg mb-2">
+              <h3 className="text-base mb-2">
                 <a
                   href={exp.website}
                   target="_blank"
@@ -24,9 +24,7 @@ export default function Home() {
                   className="accent-link font-bold"
                 >
                   {exp.organization}
-                </a>{" "}
-                <span className="text-[#6b6b6b]">·</span>{" "}
-                <span className="lowercase">{exp.role}</span>
+                </a>
               </h3>
               <p className="text-base leading-snug text-[#3a3a3a]">
                 {exp.highlights.join(". ")}.
