@@ -9,7 +9,7 @@ export default function ExperienceList() {
   const [openOrg, setOpenOrg] = useState<string | null>(null);
 
   return (
-    <ul className="exp-list max-w-[62rem]">
+    <ul className="exp-list">
       {experiences.map((exp) => {
         const open = openOrg === exp.organization;
         const panelId = `exp-${exp.organization.replace(/\s+/g, "-").toLowerCase()}`;
@@ -41,7 +41,7 @@ export default function ExperienceList() {
             {open && (
               <div id={panelId} className={`${cols} pb-8`}>
                 <span aria-hidden="true" />
-                <div>
+                <div className="max-w-[46rem]">
                   <p className="text-base leading-snug text-[#3a3a3a]">
                     {exp.highlights.join(". ")}.
                   </p>
