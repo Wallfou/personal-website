@@ -68,14 +68,11 @@ export default function ExperienceList() {
   return (
     <div className="exp-list">
       <ul>{experiences.map(renderItem)}</ul>
-      {/* plain statement, not a row - it sits in the company column */}
-      <div className={`mt-16 ${cols}`}>
-        <span aria-hidden="true" />
-        <p className="max-w-[46rem] text-base leading-snug">
-          Currently studying computer science + computer engineering at
-          Northeastern
-        </p>
-      </div>
+      {/* plain statement, not a row - left-aligned with the dates */}
+      <p className="mt-16 max-w-[46rem] text-base leading-snug">
+        Currently studying computer science + computer engineering at
+        Northeastern
+      </p>
     </div>
   );
 }

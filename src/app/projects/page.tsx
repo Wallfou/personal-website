@@ -1,32 +1,16 @@
-import { projects } from "@/lib/data";
+import { siteConfig } from "@/lib/data";
 import Nav from "@/components/Nav";
+import ProjectShowcase from "@/components/ProjectShowcase";
 
 export default function ProjectsPage() {
   return (
-    <main className="max-w-[39.6rem] mx-auto px-5 pt-13 pb-12 md:pt-16 md:pb-16">
-      <Nav />
+    <main className="projects-shell flex flex-col px-12 py-9 md:h-svh md:px-24 md:py-11">
+      <header className="projects-header">
+        <h1 className="text-base font-bold">{siteConfig.name}</h1>
+        <Nav className="mt-1" />
+      </header>
 
-      {/* projects */}
-      <section id="projects" className="mb-10">
-        <p className="text-base leading-snug text-[#3a3a3a] mb-4">
-          Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon.
-        </p>
-        <div className="space-y-1.5">
-          {projects.map((project) => (
-            <p key={project.id} className="text-base leading-snug">
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="accent-link font-bold lowercase"
-              >
-                {project.title}
-              </a>
-              <span className="text-[#6b6b6b]">, {project.subtitle}</span>
-            </p>
-          ))}
-        </div>
-      </section>
+      <ProjectShowcase />
     </main>
   );
 }

@@ -99,8 +99,41 @@ a.accent-link:focus-visible {
 }
 
 .exp-list:hover li:hover .exp-row,
-.exp-list:hover li:hover .exp-date {
+.exp-list:hover li:hover .exp-date,
+.exp-list:hover .exp-row:hover {
   color: var(--foreground);
+}
+
+/* projects: the showcase image is inset from the bottom of the viewport by the
+   same distance its top edge sits from the top */
+.projects-shell {
+  --shell-pad: 2.25rem; /* py-9 */
+  --header-h: 3.25rem; /* name + nav */
+  --header-gap: 2.5rem; /* mt-10 */
+}
+
+.projects-header {
+  height: var(--header-h);
+}
+
+@media (min-width: 768px) {
+  .projects-shell {
+    --shell-pad: 2.75rem; /* md:py-11 */
+  }
+
+  .projects-media {
+    height: calc(
+      100svh - 2 * (var(--shell-pad) + var(--header-h) + var(--header-gap))
+    );
+  }
+}
+
+/* links inside a spotlight row follow the row instead of fading on their own */
+.exp-row a,
+.exp-row a:hover,
+.exp-row a:focus-visible {
+  color: inherit;
+  transition: none;
 }
 
 ::-webkit-scrollbar {

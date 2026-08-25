@@ -71,9 +71,13 @@ export const experiences: Experience[] = [
   },
 ];
 
+export const projectsIntro =
+  "Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon.";
+
 export const projects = [
   {
     id: "medora",
+    image: "/images/medoraPic.png",
     title: "Medora",
     subtitle: "Offline polypharmacy assistant",
     date: "Apr 2026 – May 2026",
@@ -82,6 +86,7 @@ export const projects = [
   },
   {
     id: "ai-ticket-generator",
+    image: "/images/TicketeerPic.png",
     title: "Ticketeer",
     subtitle: "AI-powered project ticketing tool",
     date: "Mar 2026",
@@ -90,6 +95,7 @@ export const projects = [
   },
   {
     id: "draftpicks",
+    image: "/images/DraftPicksPic.png",
     title: "DraftPicks",
     subtitle: "NBA prop analytics platform",
     date: "Jan 2026 – Present",
@@ -98,6 +104,7 @@ export const projects = [
   },
   {
     id: "pacman-rl",
+    image: "/images/RLAgentPic.png",
     title: "PacMan RL",
     subtitle: "Reinforcement learning agent",
     date: "Sep 2025 – Dec 2025",
@@ -106,6 +113,7 @@ export const projects = [
   },
   {
     id: "nustack",
+    image: "/images/NuStackPic.png",
     title: "NuStack",
     subtitle: "Real-time Q&A platform",
     date: "Sep 2025 – Jan 2026",
@@ -114,6 +122,7 @@ export const projects = [
   },
   {
     id: "cloud-autoscaling",
+    image: "/images/CloudPic.png",
     title: "Cloud Autoscaling Simulation",
     subtitle: "Round-robin scheduling simulator",
     date: "Mar 2026 – Apr 2026",
