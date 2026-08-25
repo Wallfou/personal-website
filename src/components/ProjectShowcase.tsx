@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { projects, projectsIntro } from "@/lib/data";
+import { projects, projectsGalleryNote, projectsIntro } from "@/lib/data";
 
 export default function ProjectShowcase() {
   const [activeId, setActiveId] = useState(projects[0].id);
@@ -31,9 +31,13 @@ export default function ProjectShowcase() {
         <p className="max-w-[34rem] text-base leading-snug text-[#3a3a3a]">
           {projectsIntro}
         </p>
+        <p className="mt-16 max-w-[34rem] text-base leading-snug text-[#3a3a3a] md:mt-32">
+          {projectsGalleryNote}
+        </p>
+
         {/* the anchor carries the hover so only the text is a target, not the
             full-width row it sits in */}
-        <div className="exp-list mt-16 space-y-1.5 md:mt-32">
+        <div className="exp-list mt-6 space-y-1.5">
           {projects.map((project) => (
             <p key={project.id} className="text-base leading-snug">
               <a
