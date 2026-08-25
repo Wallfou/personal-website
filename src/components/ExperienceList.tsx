@@ -9,7 +9,7 @@ export default function ExperienceList() {
   const [openOrg, setOpenOrg] = useState<string | null>(null);
 
   return (
-    <ul>
+    <ul className="exp-list">
       {experiences.map((exp) => {
         const open = openOrg === exp.organization;
         const panelId = `exp-${exp.organization.replace(/\s+/g, "-").toLowerCase()}`;
@@ -24,10 +24,10 @@ export default function ExperienceList() {
               className="exp-row w-full cursor-pointer py-4 text-left text-base leading-snug"
             >
               <span className={row}>
-                <span className="exp-meta">{exp.period}</span>
+                <span className="exp-date">{exp.period}</span>
                 <span>
-                  <span className="block font-bold">{exp.organization}</span>
-                  <span className="exp-meta block text-sm">{exp.role}</span>
+                  <span className="block">{exp.organization}</span>
+                  <span className="exp-role block text-sm">{exp.role}</span>
                 </span>
               </span>
             </button>
@@ -40,7 +40,7 @@ export default function ExperienceList() {
                     {exp.highlights.join(". ")}.
                   </p>
                   <p className="mt-3 text-sm">
-                    <span className="exp-meta">{exp.location} — </span>
+                    <span className="exp-role">{exp.location} — </span>
                     <a
                       href={exp.website}
                       target="_blank"

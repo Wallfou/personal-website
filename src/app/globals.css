@@ -81,19 +81,26 @@ a.accent-link:focus-visible {
   user-select: none;
 }
 
-/* experience rows: instant snappy gray on hover, no fade */
+/* experience list: hovering one row spotlights it — that row's date and
+   company go black while every other row dims to gray. No transitions, so
+   the swap is instant. */
 .exp-row {
   color: var(--foreground);
   transition: none;
 }
 
-.exp-row:hover,
-.exp-row:focus-visible {
+.exp-date,
+.exp-role {
   color: var(--muted);
 }
 
-.exp-meta {
+.exp-list:hover .exp-row {
   color: var(--muted);
+}
+
+.exp-list:hover li:hover .exp-row,
+.exp-list:hover li:hover .exp-date {
+  color: var(--foreground);
 }
 
 ::-webkit-scrollbar {
