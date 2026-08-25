@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { education, experiences, type Experience } from "@/lib/data";
+import { experiences, type Experience } from "@/lib/data";
 
 const cols = "sm:grid sm:grid-cols-[12rem_1fr_1rem] sm:gap-x-20";
 
@@ -65,12 +65,17 @@ export default function ExperienceList() {
     );
   };
 
-  // one wrapper so the spotlight hover spans both groups, and only one row
-  // can be open at a time across them
   return (
     <div className="exp-list">
       <ul>{experiences.map(renderItem)}</ul>
-      <ul className="mt-16">{education.map(renderItem)}</ul>
+      {/* plain statement, not a row - it sits in the company column */}
+      <div className={`mt-16 ${cols}`}>
+        <span aria-hidden="true" />
+        <p className="max-w-[46rem] text-base leading-snug">
+          Currently studying computer science + computer engineering at
+          Northeastern
+        </p>
+      </div>
     </div>
   );
 }

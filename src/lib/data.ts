@@ -71,17 +71,6 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const education: Experience[] = [
-  {
-    role: "Student",
-    organization: "Northeastern University",
-    period: "Aug 2023 – Sep 2027",
-    highlights: [
-      "Pursuing my bachelors in computer science and computer engineering",
-    ],
-  },
-];
-
 export const projects = [
   {
     id: "medora",
