@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       {/* hero: name + nav, contacts, bio, and scroll cue pinned to the four corners */}
-      <section className="flex min-h-svh flex-col justify-between px-5 py-6 md:px-8 md:py-8">
+      <section className="flex min-h-svh flex-col justify-between px-8 py-9 md:px-11 md:py-11">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-base font-bold">{siteConfig.name}</h1>
@@ -49,7 +49,7 @@ export default function Home() {
       {/* experience: click a row to expand what I did there */}
       <section
         id="experience"
-        className="min-h-svh px-5 pt-6 pb-20 md:px-8 md:pt-8 md:pb-28"
+        className="min-h-svh px-8 pt-9 pb-24 md:px-11 md:pt-11 md:pb-32"
       >
         <h2 className="mb-4 text-base font-bold">experience</h2>
         <ExperienceList />
