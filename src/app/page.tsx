@@ -1,37 +1,58 @@
-import { siteConfig, experiences } from "@/lib/data";
+import { siteConfig } from "@/lib/data";
 import Nav from "@/components/Nav";
+import ExperienceList from "@/components/ExperienceList";
 
 export default function Home() {
   return (
-    <main className="max-w-[39.6rem] mx-auto px-5 pt-13 pb-12 md:pt-16 md:pb-16">
-      <Nav />
+    <main>
+      {/* hero: name + nav, contacts, bio, and scroll cue pinned to the four corners */}
+      <section className="flex min-h-svh flex-col justify-between px-5 py-6 md:px-8 md:py-8">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h1 className="text-base font-bold">{siteConfig.name}</h1>
+            <Nav className="mt-1" />
+          </div>
 
-      {/* about me */}
-      <header className="mb-10">
-        <p className="text-base leading-snug text-[#3a3a3a]">{siteConfig.bio}</p>
-      </header>
-
-      {/* experience */}
-      <section id="experience" className="mb-10">
-        <div className="space-y-7">
-          {experiences.map((exp) => (
-            <div key={exp.organization}>
-              <h3 className="text-base mb-2">
-                <a
-                  href={exp.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="accent-link font-bold"
-                >
-                  {exp.organization}
-                </a>
-              </h3>
-              <p className="text-base leading-snug text-[#3a3a3a]">
-                {exp.highlights.join(". ")}.
-              </p>
-            </div>
-          ))}
+          <div className="text-base leading-snug sm:text-right">
+            <p>
+              <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+            </p>
+            <p>
+              <a href={`tel:${siteConfig.phone.replace(/[^\d+]/g, "")}`}>
+                {siteConfig.phone}
+              </a>
+            </p>
+            <p>
+              <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer">
+                LinkedIn
+              </a>
+            </p>
+            <p>
+              <a href={siteConfig.github} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+            </p>
+            <p className="text-[#6b6b6b]">{siteConfig.location}</p>
+          </div>
         </div>
+
+        <div className="mt-16 flex flex-col gap-8 sm:mt-0 sm:flex-row sm:items-end sm:justify-between sm:gap-16">
+          <p className="max-w-[34rem] text-base leading-snug text-[#3a3a3a]">
+            {siteConfig.bio}
+          </p>
+          <a href="#experience" className="shrink-0 text-base sm:text-right">
+            Scroll more for my experiences <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      {/* experience: click a row to expand what I did there */}
+      <section
+        id="experience"
+        className="min-h-svh px-5 pt-6 pb-20 md:px-8 md:pt-8 md:pb-28"
+      >
+        <h2 className="mb-4 text-base font-bold">experience</h2>
+        <ExperienceList />
       </section>
     </main>
   );

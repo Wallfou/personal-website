@@ -81,6 +81,21 @@ a.accent-link:focus-visible {
   user-select: none;
 }
 
+/* experience rows: instant snappy gray on hover, no fade */
+.exp-row {
+  color: var(--foreground);
+  transition: none;
+}
+
+.exp-row:hover,
+.exp-row:focus-visible {
+  color: var(--muted);
+}
+
+.exp-meta {
+  color: var(--muted);
+}
+
 ::-webkit-scrollbar {
   width: 4px;
 }

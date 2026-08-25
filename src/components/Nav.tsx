@@ -9,11 +9,11 @@ const links = [
   { href: "/contact", label: "contact" },
 ];
 
-export default function Nav() {
+export default function Nav({ className = "mb-16" }: { className?: string }) {
   const pathname = usePathname();
 
   return (
-    <nav className="flex gap-6 text-base mb-16">
+    <nav className={`flex gap-6 text-base ${className}`}>
       {links.map((link) => {
         const active = pathname === link.href;
         return (
