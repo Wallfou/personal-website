@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { experiences } from "@/lib/data";
 
-const row = "flex flex-col gap-1 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-10";
+const row = "flex flex-col gap-1 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-20";
 
 export default function ExperienceList() {
   const [openOrg, setOpenOrg] = useState<string | null>(null);
@@ -47,7 +47,7 @@ export default function ExperienceList() {
                       rel="noopener noreferrer"
                       className="accent-link font-bold"
                     >
-                      visit site <span aria-hidden="true">↗</span>
+                      visit site
                     </a>
                   </p>
                 </div>

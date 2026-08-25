@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       {/* hero: name + nav, contacts, bio, and scroll cue pinned to the four corners */}
-      <section className="flex min-h-svh flex-col justify-between px-8 py-9 md:px-11 md:py-11">
+      <section className="flex min-h-svh flex-col justify-between px-10 py-9 md:px-16 md:py-11">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-base font-bold">{siteConfig.name}</h1>
@@ -41,7 +41,7 @@ export default function Home() {
             {siteConfig.bio}
           </p>
           <a href="#experience" className="shrink-0 text-base sm:text-right">
-            Scroll more for my experiences <span aria-hidden="true">↓</span>
+            Scroll more for my experiences
           </a>
         </div>
       </section>
@@ -49,9 +49,8 @@ export default function Home() {
       {/* experience: click a row to expand what I did there */}
       <section
         id="experience"
-        className="min-h-svh px-8 pt-9 pb-24 md:px-11 md:pt-11 md:pb-32"
+        className="min-h-svh px-10 pt-9 pb-24 md:px-16 md:pt-11 md:pb-32"
       >
-        <h2 className="mb-4 text-base font-bold">experience</h2>
         <ExperienceList />
       </section>
     </main>
