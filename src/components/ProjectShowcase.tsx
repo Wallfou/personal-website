@@ -27,13 +27,13 @@ export default function ProjectShowcase() {
         ))}
       </div>
 
-      <div className="mt-8 md:mt-0 md:ml-16 md:flex-1 md:text-right">
-        <p className="max-w-[34rem] text-base leading-snug text-[#3a3a3a] md:ml-auto">
+      <div className="mt-8 md:mt-0 md:ml-16 md:flex md:flex-1 md:flex-col md:justify-end">
+        <p className="max-w-[34rem] text-base leading-snug text-[#3a3a3a]">
           {projectsIntro}
         </p>
         {/* the anchor carries the hover so only the text is a target, not the
             full-width row it sits in */}
-        <div className="exp-list mt-16 space-y-1.5">
+        <div className="exp-list mt-16 space-y-1.5 md:mt-32">
           {projects.map((project) => (
             <p key={project.id} className="text-base leading-snug">
               <a
