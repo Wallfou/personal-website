@@ -43,19 +43,16 @@ export default function ExperienceList() {
               <p className="text-base leading-snug text-[#3a3a3a]">
                 {exp.highlights.join(". ")}.
               </p>
-              {(exp.location || exp.website) && (
+              {exp.website && (
                 <p className="mt-3 text-sm">
-                  {exp.location && <span className="exp-role">{exp.location}</span>}
-                  {exp.website && (
-                    <a
-                      href={exp.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`accent-link font-bold ${exp.location ? "ml-5" : ""}`}
-                    >
-                      visit site
-                    </a>
-                  )}
+                  <a
+                    href={exp.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="accent-link font-bold"
+                  >
+                    visit site
+                  </a>
                 </p>
               )}
             </div>

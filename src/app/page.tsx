@@ -49,7 +49,7 @@ export default function Home() {
       {/* experience: click a row to expand what I did there */}
       <section
         id="experience"
-        className="px-12 pt-9 pb-16 md:px-24 md:pt-11 md:pb-24"
+        className="px-12 pt-9 pb-32 md:px-24 md:pt-11 md:pb-48"
       >
         <ExperienceList />
       </section>
