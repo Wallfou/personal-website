@@ -62,6 +62,7 @@ export const experiences: Experience[] = [
   {
     role: "Data Engineer Intern",
     organization: "Synthetic Resin Research & Development Company",
+    location: "Guangdong, China",
     period: "Jul 2022 – Sep 2022",
     highlights: [
       "Started my first internship during high school",
@@ -74,8 +75,6 @@ export const education: Experience[] = [
   {
     role: "Student",
     organization: "Northeastern University",
-    website: "https://www.northeastern.edu",
-    location: "Boston, MA",
     period: "Aug 2023 – Sep 2027",
     highlights: [
       "Pursuing my bachelors in computer science and computer engineering",
