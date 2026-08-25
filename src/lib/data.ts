@@ -9,7 +9,16 @@ export const siteConfig = {
   github: "https://github.com/Wallfou",
 };
 
-export const experiences = [
+export type Experience = {
+  role: string;
+  organization: string;
+  website?: string;
+  location?: string;
+  period: string;
+  highlights: string[];
+};
+
+export const experiences: Experience[] = [
   {
     role: "Software Engineer Co-op",
     organization: "Function Health",
@@ -48,6 +57,28 @@ export const experiences = [
       "We had about 60 students across different engineering groups who used the system as a source of truth for schedules, finances, and manufacturing",
       "I was the software lead responsible for managing work around scheduling features",
       "Later, I transitioned into a leading member of the Launchpad onboarding program, hosting weekly lectures on full-stack development to improve new member retention",
+    ],
+  },
+  {
+    role: "Data Engineer Intern",
+    organization: "Synthetic Resin Research & Development Company",
+    period: "Jul 2022 – Sep 2022",
+    highlights: [
+      "Started my first internship during high school",
+      "Learned basics around relational database and data analysis",
+    ],
+  },
+];
+
+export const education: Experience[] = [
+  {
+    role: "Student",
+    organization: "Northeastern University",
+    website: "https://www.northeastern.edu",
+    location: "Boston, MA",
+    period: "Aug 2023 – Sep 2027",
+    highlights: [
+      "Pursuing my bachelors in computer science and computer engineering",
     ],
   },
 ];
