@@ -80,7 +80,7 @@ export const projectsGalleryNote =
 export const projects = [
   {
     id: "medora",
-    image: "/images/medoraPic.png",
+    image: "/images/project1.png",
     title: "Medora",
     subtitle: "Offline polypharmacy assistant",
     date: "Apr 2026 – May 2026",
@@ -89,7 +89,7 @@ export const projects = [
   },
   {
     id: "ai-ticket-generator",
-    image: "/images/TicketeerPic.png",
+    image: "/images/project2.png",
     title: "Ticketeer",
     subtitle: "AI-powered project ticketing tool",
     date: "Mar 2026",
@@ -98,7 +98,7 @@ export const projects = [
   },
   {
     id: "draftpicks",
-    image: "/images/DraftPicksPic.png",
+    image: "/images/project3.png",
     title: "DraftPicks",
     subtitle: "NBA prop analytics platform",
     date: "Jan 2026 – Present",
@@ -107,7 +107,7 @@ export const projects = [
   },
   {
     id: "cloud-autoscaling",
-    image: "/images/CloudPic.png",
+    image: "/images/project4.png",
     title: "Cloud Autoscaling Simulation",
     subtitle: "Round-robin scheduling simulator",
     date: "Mar 2026 – Apr 2026",
@@ -116,7 +116,7 @@ export const projects = [
   },
   {
     id: "pacman-rl",
-    image: "/images/RLAgentPic.png",
+    image: "/images/project5.png",
     title: "PacMan RL",
     subtitle: "Reinforcement learning agent",
     date: "Sep 2025 – Dec 2025",
@@ -125,7 +125,7 @@ export const projects = [
   },
   {
     id: "nustack",
-    image: "/images/NuStackPic.png",
+    image: "/images/project6.png",
     title: "NuStack",
     subtitle: "Real-time Q&A platform",
     date: "Sep 2025 – Jan 2026",

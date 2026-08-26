@@ -20,7 +20,7 @@ export default function ProjectShowcase() {
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
             priority={i === 0}
-            className={`object-cover ${
+            className={`object-cover object-center ${
               project.id === activeId ? "" : "opacity-0"
             }`}
           />
