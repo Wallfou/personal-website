@@ -72,15 +72,15 @@ export const experiences: Experience[] = [
 ];
 
 export const projectsIntro =
-  "Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon.";
+  "Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon. Enjoy this gallery of imagery and projects to learn more about me!";
 
-export const projectsGalleryNote =
-  "A gallery of imagery and projects documenting my journey and development";
 
 export const projects = [
   {
     id: "medora",
-    image: "/images/project1.png",
+    image: "/images/medora.jpeg",
+    blurb:
+      "Clay tiles are commonly used as roofing materials for rural Chinese homes, where my grandparents grew up. Their battle with polypharmacy inspired this project.",
     title: "Medora",
     subtitle: "Offline polypharmacy assistant",
     date: "Apr 2026 – May 2026",
@@ -89,7 +89,9 @@ export const projects = [
   },
   {
     id: "ai-ticket-generator",
-    image: "/images/project2.png",
+    image: "/images/ticketeer.jpeg",
+    blurb:
+      "Attending a Formula One race is near the top of my bucket list. My interest in the sport connected me with students on the electric racing team, where I got the idea for ticketeer, in an attempt to automate engineering workflows.",
     title: "Ticketeer",
     subtitle: "AI-powered project ticketing tool",
     date: "Mar 2026",
@@ -98,7 +100,9 @@ export const projects = [
   },
   {
     id: "draftpicks",
-    image: "/images/project3.png",
+    image: "/images/draftpicks.jpg",
+    blurb:
+      "Basketball is one of my favorite hobbies. My interest in basketball propositional betting led me down a rabbit hole. The conclusion is the house always wins.",
     title: "DraftPicks",
     subtitle: "NBA prop analytics platform",
     date: "Jan 2026 – Present",
@@ -107,7 +111,9 @@ export const projects = [
   },
   {
     id: "cloud-autoscaling",
-    image: "/images/project4.png",
+    image: "/images/cloudSimulation.jpeg",
+    blurb:
+      "A famous landmark in Guangzhou, China, where I spent my elementary school days. Alex Honnold should scale this tower next.",
     title: "Cloud Autoscaling Simulation",
     subtitle: "Round-robin scheduling simulator",
     date: "Mar 2026 – Apr 2026",
@@ -116,7 +122,9 @@ export const projects = [
   },
   {
     id: "pacman-rl",
-    image: "/images/project5.png",
+    image: "/images/pacmanRL.jpeg",
+    blurb:
+      "Neon signs in the streets of Hong Kong, where I was born. Reminds me of Pac Man.",
     title: "PacMan RL",
     subtitle: "Reinforcement learning agent",
     date: "Sep 2025 – Dec 2025",
@@ -125,7 +133,9 @@ export const projects = [
   },
   {
     id: "nustack",
-    image: "/images/project6.png",
+    image: "/images/nustack.jpeg",
+    blurb:
+      "Huskies! I want to adopt a husky in the future. They are also the mascot of Northeastern, where I spent a semester learning the fundamentals of software engineering, and built this as a final project.",
     title: "NuStack",
     subtitle: "Real-time Q&A platform",
     date: "Sep 2025 – Jan 2026",
