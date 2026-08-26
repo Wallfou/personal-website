@@ -72,7 +72,7 @@ export const experiences: Experience[] = [
 ];
 
 export const projectsIntro =
-  "Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon. Enjoy this gallery of imagery and projects to learn more about me!";
+  "Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon. Check out this gallery of imagery and project links to learn more about me!";
 
 
 export const projects = [
