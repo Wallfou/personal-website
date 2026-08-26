@@ -67,9 +67,11 @@ a:focus-visible {
   text-decoration-color: currentColor;
 }
 
-/* british racing green accent links, darkening on hover */
+/* british racing green accent links. The colour already marks these as
+   interactive, so they skip the underline the plain links carry. */
 a.accent-link {
   color: var(--accent);
+  text-decoration: none;
 }
 
 a.accent-link:hover,
