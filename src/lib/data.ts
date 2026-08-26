@@ -106,6 +106,15 @@ export const projects = [
     github: "https://github.com/Wallfou/NBA-PICKS",
   },
   {
+    id: "cloud-autoscaling",
+    image: "/images/CloudPic.png",
+    title: "Cloud Autoscaling Simulation",
+    subtitle: "Round-robin scheduling simulator",
+    date: "Mar 2026 – Apr 2026",
+    tech: ["C++", "Round Robin Scheduling", "Cloud Autoscaling"],
+    github: "https://github.com/Wallfou/cloud-autoscaling-simulator",
+  },
+  {
     id: "pacman-rl",
     image: "/images/RLAgentPic.png",
     title: "PacMan RL",
@@ -122,14 +131,5 @@ export const projects = [
     date: "Sep 2025 – Jan 2026",
     tech: ["TypeScript", "React", "Node.js", "MongoDB", "Socket.io", "Firebase"],
     github: "https://github.com/Wallfou/NuStack",
-  },
-  {
-    id: "cloud-autoscaling",
-    image: "/images/CloudPic.png",
-    title: "Cloud Autoscaling Simulation",
-    subtitle: "Round-robin scheduling simulator",
-    date: "Mar 2026 – Apr 2026",
-    tech: ["C++", "Round Robin Scheduling", "Cloud Autoscaling"],
-    github: "https://github.com/Wallfou/cloud-autoscaling-simulator",
   },
 ];
