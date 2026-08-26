@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { projects, projectsIntro } from "@/lib/data";
+import { assetPath } from "@/lib/assetPath";
 
 export default function ProjectShowcase() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -19,7 +20,7 @@ export default function ProjectShowcase() {
         {projects.map((project, i) => (
           <Image
             key={project.id}
-            src={project.image}
+            src={assetPath(project.image)}
             alt={project.title}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
