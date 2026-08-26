@@ -134,6 +134,7 @@ export const projects = [
   {
     id: "nustack",
     image: "/images/nustack.jpeg",
+    imagePosition: "center top",
     blurb:
       "Huskies! I want to adopt a husky in the future. They are also the mascot of Northeastern, where I spent a semester learning the fundamentals of software engineering, and built this as a final project.",
     title: "NuStack",

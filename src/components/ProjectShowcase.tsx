@@ -16,7 +16,7 @@ export default function ProjectShowcase() {
     <div className="mt-10 md:flex">
       {/* every image is mounted and toggled by opacity so hovering never waits
           on a network request */}
-      <div className="projects-media relative aspect-[4/3] w-full shrink-0 overflow-hidden bg-[#f2f2f2] md:aspect-auto md:w-1/2">
+      <div className="projects-media relative aspect-[4/3] w-full shrink-0 overflow-hidden md:aspect-auto md:w-1/2">
         {projects.map((project, i) => (
           <Image
             key={project.id}
@@ -25,7 +25,8 @@ export default function ProjectShowcase() {
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
             priority={i === 0}
-            className={`object-cover object-center ${
+            style={{ objectPosition: project.imagePosition ?? "center" }}
+            className={`object-cover ${
               project.id === hoveredId ? "" : "opacity-0"
             }`}
           />
