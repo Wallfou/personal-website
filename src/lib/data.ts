@@ -75,7 +75,7 @@ export const projectsIntro =
   "Here are some personal projects that I have worked on over the past years. These were important stepping stones for my journey as a student, and I started them out of curiosity for an unfamiliar topic/concept. Right now I am working on the ARC Prize competition, which I am very excited about! Hopefully I will have something to show soon.";
 
 export const projectsGalleryNote =
-  "A gallery of projects and imagery documenting my development";
+  "A gallery of imagery and projects documenting my journey and development";
 
 export const projects = [
   {
