@@ -9,7 +9,8 @@ export default function ProjectShowcase() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const hovered = projects.find((project) => project.id === hoveredId);
-  // nothing hovered yet: the first project's image stands in behind the intro
+  // hovering sticks: whatever was last pointed at stays up after the cursor
+  // leaves. Before any hover, the first image stands in behind the intro.
   const shownId = hovered?.id ?? projects[0].id;
 
   return (
@@ -40,10 +41,7 @@ export default function ProjectShowcase() {
           {hovered ? hovered.blurb : projectsIntro}
         </p>
 
-        <div
-          className="exp-list mt-16 space-y-1.5 md:mt-0"
-          onMouseLeave={() => setHoveredId(null)}
-        >
+        <div className="exp-list mt-16 space-y-1.5 md:mt-0">
           {projects.map((project) => (
             <p key={project.id} className="text-base leading-snug">
               <a
