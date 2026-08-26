@@ -18,6 +18,12 @@
   --color-foreground: var(--foreground);
 }
 
+/* half a pixel up on the two sizes the site actually uses */
+@theme {
+  --text-base: 1.03125rem; /* 16.5px */
+  --text-sm: 0.90625rem; /* 14.5px */
+}
+
 * {
   box-sizing: border-box;
 }
@@ -43,16 +49,22 @@ body {
   font-family: var(--font-sans);
 }
 
-/* every link on the page fades from black to gray on hover */
+/* links carry a faint underline so they read as clickable while scanning,
+   then firm up under the cursor. Kept hairline-thin and dropped well clear of
+   the baseline so it reads as texture rather than decoration. */
 a {
   color: inherit;
-  text-decoration: none;
-  transition: color 0.18s ease;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in srgb, currentColor 18%, transparent);
+  text-underline-offset: 0.24em;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
 }
 
 a:hover,
 a:focus-visible {
   color: var(--muted);
+  text-decoration-color: currentColor;
 }
 
 /* british racing green accent links, darkening on hover */
