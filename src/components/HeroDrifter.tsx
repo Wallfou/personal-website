@@ -11,6 +11,10 @@ const SPEED = 22;
 /** radians per second the bow can swing, so course changes arc rather than snap */
 const TURN = 0.4;
 
+/** a short pier jutting from the left margin, where the boat starts */
+const DOCK_W = 84;
+const DOCK_H = 12;
+
 /** transverse ripples dropped at the stern */
 const WAKE_COUNT = 16;
 const WAKE_SPAWN_MS = 460;
@@ -33,6 +37,7 @@ type Ripple = { x: number; y: number; angle: number; born: number };
  */
 export default function HeroDrifter() {
   const shipRef = useRef<HTMLDivElement>(null);
+  const dockRef = useRef<HTMLDivElement>(null);
   const wakeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
@@ -45,8 +50,12 @@ export default function HeroDrifter() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!window.matchMedia("(pointer: fine)").matches) return;
 
-    let bounds: { left: number; right: number; top: number; bottom: number } | null =
-      null;
+    type Rect = { left: number; right: number; top: number; bottom: number };
+    let bounds: Rect | null = null;
+    let dock: Rect | null = null;
+    // the hull is treated as a circle of this radius, so no part of it can
+    // reach the pier however the boat is turned
+    const HULL_R = Math.hypot(SHIP_W, SHIP_H) / 2;
     let x = 0;
     let y = 0;
     let heading = -Math.PI / 2;
@@ -68,7 +77,7 @@ export default function HeroDrifter() {
       const style = getComputedStyle(section);
       // the hull rotates, so inset by its circumscribed radius rather than by
       // width and height - otherwise a corner pokes out on the diagonal
-      const r = Math.hypot(SHIP_W, SHIP_H) / 2;
+      const r = HULL_R;
 
       const next = {
         left: parseFloat(style.paddingLeft) + r,
@@ -82,14 +91,59 @@ export default function HeroDrifter() {
       bounds = usable ? next : null;
       ship.style.opacity = usable ? "1" : "0";
 
-      if (usable && x === 0 && y === 0) {
-        x = (next.left + next.right) / 2;
-        y = (next.top + next.bottom) / 2;
+      if (!usable) {
+        dock = null;
+        if (dockRef.current) dockRef.current.style.opacity = "0";
+        return;
+      }
+
+      // the pier sits against the left margin, halfway down the free band
+      const padLeft = parseFloat(style.paddingLeft);
+      const midY = (next.top + next.bottom) / 2;
+      dock = {
+        left: padLeft,
+        right: padLeft + DOCK_W,
+        top: midY - DOCK_H / 2,
+        bottom: midY + DOCK_H / 2,
+      };
+
+      const dockEl = dockRef.current;
+      if (dockEl) {
+        dockEl.style.opacity = "1";
+        dockEl.style.transform = `translate3d(${dock.left}px, ${dock.top}px, 0)`;
+      }
+
+      // start moored off the end of the pier, bow pointing out to open water
+      if (x === 0 && y === 0) {
+        x = clamp(dock.right + HULL_R, next.left, next.right);
+        y = midY;
+        heading = 0;
       }
     };
 
     const clamp = (v: number, lo: number, hi: number) =>
       v < lo ? lo : v > hi ? hi : v;
+
+    /**
+     * Push the hull clear of the pier. The dock is grown by the hull radius and
+     * the centre is ejected along whichever side it is closest to escaping, so
+     * the boat slides around the pier rather than stopping dead or passing
+     * through it.
+     */
+    const clearDock = () => {
+      if (!dock) return;
+      const l = dock.left - HULL_R;
+      const r = dock.right + HULL_R;
+      const t = dock.top - HULL_R;
+      const b = dock.bottom + HULL_R;
+      if (x <= l || x >= r || y <= t || y >= b) return;
+
+      const out = Math.min(x - l, r - x, y - t, b - y);
+      if (out === x - l) x = l;
+      else if (out === r - x) x = r;
+      else if (out === y - t) y = t;
+      else y = b;
+    };
 
     const tick = (now: number) => {
       frame = requestAnimationFrame(tick);
@@ -124,6 +178,7 @@ export default function HeroDrifter() {
       // instead of stalling against it
       x = clamp(x + Math.cos(heading) * SPEED * dt, bounds.left, bounds.right);
       y = clamp(y + Math.sin(heading) * SPEED * dt, bounds.top, bounds.bottom);
+      clearDock();
 
       // the hull is drawn pointing up, so the bow leads by a quarter turn
       ship.style.transform =
@@ -182,6 +237,17 @@ export default function HeroDrifter() {
 
   return (
     <>
+      <div
+        ref={dockRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 opacity-0"
+        style={{
+          width: DOCK_W,
+          height: DOCK_H,
+          backgroundColor: "#c4c4c4",
+          willChange: "transform",
+        }}
+      />
       {Array.from({ length: WAKE_COUNT }, (_, i) => (
         <div
           key={i}
