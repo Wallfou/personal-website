@@ -2,25 +2,38 @@
 
 import { useEffect, useRef } from "react";
 
-const SHIP_W = 14;
-const SHIP_H = 20;
+const SHIP_W = 28;
+const SHIP_H = 40;
 /** clearance kept between the ship and the corner blocks */
 const MARGIN = 28;
-/** px per second - a full crossing of the hero takes well over a minute */
-const SPEED = 14;
+/** px per second - a full crossing of the hero still takes about a minute */
+const SPEED = 22;
 /** radians per second the bow can swing, so course changes arc rather than snap */
 const TURN = 0.4;
+
+/** transverse ripples dropped at the stern */
+const WAKE_COUNT = 16;
+const WAKE_SPAWN_MS = 460;
+const WAKE_LIFE_MS = 3600;
+const WAKE_W = 18;
+const WAKE_H = 2;
+
+type Ripple = { x: number; y: number; angle: number; born: number };
 
 /**
  * A small ship, seen from above, that holds a constant slow speed and steers
  * toward the pointer. It never speeds up or stops: only its heading changes,
  * so it arcs around and comes back rather than parking on the cursor.
  *
- * Its bounds are measured from the corner blocks at runtime, so the layout
- * drives the ship rather than the other way round.
+ * Behind it, a line of transverse ripples is dropped at the stern and left in
+ * place to spread and fade, which reads as a wake without drawing water.
+ *
+ * Bounds are measured from the corner blocks at runtime, so the layout drives
+ * the ship rather than the other way round.
  */
 export default function HeroDrifter() {
   const shipRef = useRef<HTMLDivElement>(null);
+  const wakeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const ship = shipRef.current;
@@ -40,6 +53,9 @@ export default function HeroDrifter() {
     let cursor: { x: number; y: number } | null = null;
     let frame = 0;
     let last = performance.now();
+    let lastSpawn = 0;
+    let nextRipple = 0;
+    const ripples: (Ripple | null)[] = Array(WAKE_COUNT).fill(null);
 
     const measure = () => {
       const top = section.querySelector("[data-hero-top]");
@@ -50,19 +66,19 @@ export default function HeroDrifter() {
       const t = top.getBoundingClientRect();
       const b = bottom.getBoundingClientRect();
       const style = getComputedStyle(section);
-      const halfW = SHIP_W / 2;
-      const halfH = SHIP_H / 2;
+      // the hull rotates, so inset by its circumscribed radius rather than by
+      // width and height - otherwise a corner pokes out on the diagonal
+      const r = Math.hypot(SHIP_W, SHIP_H) / 2;
 
       const next = {
-        left: parseFloat(style.paddingLeft) + halfW,
-        right: s.width - parseFloat(style.paddingRight) - halfW,
-        top: t.bottom - s.top + MARGIN + halfH,
-        bottom: b.top - s.top - MARGIN - halfH,
+        left: parseFloat(style.paddingLeft) + r,
+        right: s.width - parseFloat(style.paddingRight) - r,
+        top: t.bottom - s.top + MARGIN + r,
+        bottom: b.top - s.top - MARGIN - r,
       };
 
       // on narrow screens the corner blocks stack and leave no gap to sail in
-      const usable =
-        next.bottom - next.top > SHIP_H * 2 && next.right - next.left > SHIP_W * 4;
+      const usable = next.bottom - next.top > SHIP_H && next.right - next.left > SHIP_W * 2;
       bounds = usable ? next : null;
       ship.style.opacity = usable ? "1" : "0";
 
@@ -113,6 +129,38 @@ export default function HeroDrifter() {
       ship.style.transform =
         `translate3d(${x - SHIP_W / 2}px, ${y - SHIP_H / 2}px, 0)` +
         ` rotate(${heading + Math.PI / 2}rad)`;
+
+      if (now - lastSpawn >= WAKE_SPAWN_MS) {
+        lastSpawn = now;
+        ripples[nextRipple] = {
+          x: x - Math.cos(heading) * (SHIP_H / 2),
+          y: y - Math.sin(heading) * (SHIP_H / 2),
+          angle: heading,
+          born: now,
+        };
+        nextRipple = (nextRipple + 1) % WAKE_COUNT;
+      }
+
+      for (let i = 0; i < WAKE_COUNT; i++) {
+        const el = wakeRefs.current[i];
+        const r = ripples[i];
+        if (!el) continue;
+        if (!r) {
+          el.style.opacity = "0";
+          continue;
+        }
+        const age = (now - r.born) / WAKE_LIFE_MS;
+        if (age >= 1) {
+          ripples[i] = null;
+          el.style.opacity = "0";
+          continue;
+        }
+        // ripples sit across the track, spreading and thinning as they age
+        el.style.opacity = String(0.34 * (1 - age) ** 1.6);
+        el.style.transform =
+          `translate3d(${r.x - WAKE_W / 2}px, ${r.y - WAKE_H / 2}px, 0)` +
+          ` rotate(${r.angle + Math.PI / 2}rad) scaleX(${0.55 + age * 1.9})`;
+      }
     };
 
     const onMove = (event: PointerEvent) => {
@@ -133,16 +181,33 @@ export default function HeroDrifter() {
   }, []);
 
   return (
-    <div
-      ref={shipRef}
-      aria-hidden="true"
-      className="pointer-events-none absolute left-0 top-0 opacity-0"
-      style={{ width: SHIP_W, height: SHIP_H, willChange: "transform" }}
-    >
-      <svg viewBox="0 0 14 20" width={SHIP_W} height={SHIP_H} fill="var(--accent)">
-        {/* hull from above: pointed bow, widest amidships, flat transom */}
-        <path d="M7 0 C10.4 5.4 11.6 11.4 10.9 16.4 L10.6 20 H3.4 L3.1 16.4 C2.4 11.4 3.6 5.4 7 0 Z" />
-      </svg>
-    </div>
+    <>
+      {Array.from({ length: WAKE_COUNT }, (_, i) => (
+        <div
+          key={i}
+          ref={(el) => {
+            wakeRefs.current[i] = el;
+          }}
+          aria-hidden="true"
+          className="pointer-events-none absolute left-0 top-0 rounded-full bg-[var(--accent)] opacity-0"
+          style={{
+            width: WAKE_W,
+            height: WAKE_H,
+            willChange: "transform, opacity",
+          }}
+        />
+      ))}
+      <div
+        ref={shipRef}
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-0 opacity-0"
+        style={{ width: SHIP_W, height: SHIP_H, willChange: "transform" }}
+      >
+        <svg viewBox="0 0 14 20" width={SHIP_W} height={SHIP_H} fill="var(--accent)">
+          {/* hull from above: pointed bow, widest amidships, flat transom */}
+          <path d="M7 0 C10.4 5.4 11.6 11.4 10.9 16.4 L10.6 20 H3.4 L3.1 16.4 C2.4 11.4 3.6 5.4 7 0 Z" />
+        </svg>
+      </div>
+    </>
   );
 }
