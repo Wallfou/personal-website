@@ -1,19 +1,13 @@
 import { siteConfig } from "@/lib/data";
 import Nav from "@/components/Nav";
-import HeroDrifter from "@/components/HeroDrifter";
 import ExperienceList from "@/components/ExperienceList";
 
 export default function Home() {
   return (
     <main>
       {/* hero: name + nav, contacts, bio, and scroll cue pinned to the four corners */}
-      <section className="relative flex min-h-svh flex-col justify-between px-12 py-9 md:px-24 md:py-11">
-        <HeroDrifter />
-
-        <div
-          data-hero-top
-          className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between"
-        >
+      <section className="flex min-h-svh flex-col justify-between px-12 py-9 md:px-24 md:py-11">
+        <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-base font-bold">{siteConfig.name}</h1>
             <Nav className="mt-1" />
@@ -42,10 +36,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div
-          data-hero-bottom
-          className="mt-16 flex flex-col gap-8 sm:mt-0 sm:flex-row sm:items-end sm:justify-between sm:gap-16"
-        >
+        <div className="mt-16 flex flex-col gap-8 sm:mt-0 sm:flex-row sm:items-end sm:justify-between sm:gap-16">
           <p className="max-w-[34rem] text-base leading-snug text-[#3a3a3a]">
             {siteConfig.bio}
           </p>
