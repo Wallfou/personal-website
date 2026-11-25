@@ -1,12 +1,17 @@
 import { siteConfig } from "@/lib/data";
 import Nav from "@/components/Nav";
 import ExperienceList from "@/components/ExperienceList";
+import AsciiPlane from "@/components/AsciiPlane";
 
 export default function Home() {
   return (
     <main>
       {/* hero: name + nav, contacts, bio, and scroll cue pinned to the four corners */}
-      <section className="flex min-h-svh flex-col justify-between px-12 py-9 md:px-24 md:py-11">
+      <section className="relative flex min-h-svh flex-col justify-between px-12 py-9 md:px-24 md:py-11">
+        {/* ASCII plane lapping the empty middle; clicks pass straight through. The
+            width cap keeps the box at most ~2.2x as wide as it is tall, so the
+            oval's ends stay round enough for the plane to turn through. */}
+        <AsciiPlane className="pointer-events-none absolute top-1/2 left-1/2 hidden h-[44svh] w-[min(62vw,56rem,97svh)] -translate-x-1/2 -translate-y-1/2 md:block" />
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-base font-bold">{siteConfig.name}</h1>
