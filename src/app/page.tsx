@@ -37,9 +37,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ASCII plane lapping the empty middle: it takes whatever height is left
-            between the top and bottom rows, so it never overlaps the text */}
-        <AsciiPlane className="pointer-events-none my-8 hidden min-h-0 w-full flex-1 md:block" />
+        {/* ASCII plane flying a figure eight through the empty middle: it takes
+            whatever height is left between the top and bottom rows, so it never
+            overlaps the text, and the negative margin runs it edge to edge */}
+        <AsciiPlane className="pointer-events-none my-8 hidden min-h-0 flex-1 md:-mx-24 md:block" />
 
         <div className="mt-16 flex flex-col gap-8 sm:mt-0 sm:flex-row sm:items-end sm:justify-between sm:gap-16">
           <p className="max-w-[34rem] text-base leading-snug text-[#3a3a3a]">
