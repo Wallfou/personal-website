@@ -26,10 +26,12 @@ export const experiences: Experience[] = [
     location: "Boston, MA",
     period: "Jul 2026 – Present",
     highlights: [
-      "I'm currently enjoying my time at Function Health, working on the Navigating Care team to build out Function's health data analysis features",
-      "For now, my work has been focused on contributing to the safety/value of our AI chat service",
-      "A lot of it comes down to building out the evaluation infrastructure, specifically tackling the sensitivity of the model's medical guardrails",
-      "I have also been contributing to Function's action plan service, mainly working on roadmap features to revamp user experiences on both mobile and web applications, as well as architecting observability infrastructure to improve monitoring",
+      "I'm currently on the platform team, building an internal agentic code review system",
+      "Even as AI has dramatically accelerated how quickly software gets written, review has remained a bottleneck",
+      "The system aims to reduce how much of that review has to happen by hand, without relaxing our quality standards or taking on added risk",
+      "My focus has been improving the precision of the review agents",
+      "I delivered an external context retrieval layer for them end-to-end, and I'm now building out a self-learning loop",
+      "Before this, I worked on the safety and usefulness of our AI chat product, contributing to evaluation infrastructure and roadmap features",
     ],
   },
   {
