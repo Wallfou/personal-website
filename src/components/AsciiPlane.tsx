@@ -8,13 +8,16 @@ import { AsciiCanvas, buildPlane, multiply, rotateX, rotateZ, transform } from "
 // scales with the box and its turning circle always fits the oval.
 const SCALE_PER_ROW = 1.3;
 // the plane spans 2 units nose to tail and wingtip to wingtip before scaling
-const PLANE_SCALE = 0.42;
+const PLANE_SCALE = 0.46;
 // world units per second; a lap takes about 9 seconds
 const SPEED = 0.85;
 // the plane swings up to ~17% wide of the oval through the curves
 const OVERSHOOT = 1.2;
-// how hard the plane rolls into a turn; ~0.3 tops out near 35 degrees
+// how hard the plane rolls into a turn; ~0.3 tops out near 40 degrees
 const BANK = 0.3;
+// the oval can be at most this many times wider than it is tall; any longer
+// and its ends get too tight for the plane to turn through
+const MAX_OVAL_ASPECT = 4;
 // the camera looks down on the flight path at a slight angle, so the
 // fuselage and tail fin read as 3D rather than a flat top-down outline
 const VIEW = rotateX(0.45);
@@ -33,7 +36,8 @@ type Flight = {
 
 /**
  * An ASCII airplane that flies laps around an invisible oval filling this
- * element, banking into the curves and leaving a dotted trail.
+ * element, banking into the curves and leaving a dotted trail. The scene
+ * scales with the element's height, so a bigger element means a bigger plane.
  */
 export default function AsciiPlane({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLPreElement>(null);
@@ -53,10 +57,9 @@ export default function AsciiPlane({ className = "" }: { className?: string }) {
     const oval = (c: AsciiCanvas) => {
       // the tilted camera brings the near side of the oval a little closer
       const margin = PLANE_SCALE + 0.12;
-      return {
-        rx: Math.max(0.3, (c.halfWidth - margin) / OVERSHOOT),
-        ry: Math.max(0.3, (c.halfHeight - margin) / OVERSHOOT),
-      };
+      const ry = Math.max(0.3, (c.halfHeight - margin) / OVERSHOOT);
+      const rx = Math.max(0.3, (c.halfWidth - margin) / OVERSHOOT);
+      return { rx: Math.min(rx, ry * MAX_OVAL_ASPECT), ry };
     };
 
     const resize = () => {
