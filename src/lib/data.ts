@@ -26,12 +26,12 @@ export const experiences: Experience[] = [
     location: "Boston, MA",
     period: "Jul 2026 – Present",
     highlights: [
-      "I'm currently on the platform team, building an internal agentic code review system",
-      "Even as AI has dramatically accelerated how quickly software gets written, review has remained a bottleneck",
-      "The system aims to reduce how much of that review has to happen by hand, without relaxing our quality standards or taking on added risk",
-      "My focus has been improving the precision of the review agents",
-      "I delivered an external context retrieval layer for them end-to-end, and I'm now building out a self-improving loop",
-      "Before this, I worked on the safety and usefulness of our AI chat product, contributing to evaluation infrastructure and roadmap features",
+      "Currently on the platform team contributing to an agentic code review solution for Function",
+      "Despite how drastically AI has accelerated software development, code review remains a bottleneck",
+      "Our internal agentic solution aims to reduce the need for manual reviews, while ensuring code quality standards and minimizing risks",
+      "My focus specifically has been improving the precision of our code review agents",
+      "I had the chance to deliver an external context retrieval layer for our agents end to end, and I'm now working on infra for a self-improvement loop",
+      "Previously, I was focused on the safety/value of our AI chat product; contributing to evaluation infrastructure and roadmap features",
     ],
   },
   {
