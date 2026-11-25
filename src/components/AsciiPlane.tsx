@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { AsciiCanvas, buildPlane, multiply, rotateX, rotateZ } from "@/lib/ascii3d";
+import { AsciiCanvas, buildPlane, multiply, rotateX, rotateZ, transform } from "@/lib/ascii3d";
 
 // projection scale per row of the grid. Tying it to the row count keeps the
 // scene the same size in world units whatever the box measures, so the plane
@@ -15,6 +15,9 @@ const SPEED = 0.85;
 const OVERSHOOT = 1.2;
 // how hard the plane rolls into a turn; ~0.3 tops out near 35 degrees
 const BANK = 0.3;
+// the camera looks down on the flight path at a slight angle, so the
+// fuselage and tail fin read as 3D rather than a flat top-down outline
+const VIEW = rotateX(0.45);
 // how far ahead along the oval (in radians) the plane aims
 const LEAD = 0.5;
 const TRAIL_LENGTH = 50;
@@ -48,7 +51,8 @@ export default function AsciiPlane({ className = "" }: { className?: string }) {
     // the oval the plane laps, inset so a wingtip never leaves the grid even
     // at the widest point of a turn
     const oval = (c: AsciiCanvas) => {
-      const margin = PLANE_SCALE + 0.05;
+      // the tilted camera brings the near side of the oval a little closer
+      const margin = PLANE_SCALE + 0.12;
       return {
         rx: Math.max(0.3, (c.halfWidth - margin) / OVERSHOOT),
         ry: Math.max(0.3, (c.halfHeight - margin) / OVERSHOOT),
@@ -111,10 +115,11 @@ export default function AsciiPlane({ className = "" }: { className?: string }) {
       }
       const f = flight;
       canvas.clear();
-      canvas.draw(plane, multiply(rotateZ(f.heading), rotateX(f.bank)), f.x, f.y, PLANE_SCALE);
+      const attitude = multiply(VIEW, multiply(rotateZ(f.heading), rotateX(f.bank)));
+      canvas.draw(plane, attitude, transform(VIEW, [f.x, f.y, 0]), PLANE_SCALE);
       // every other trail point, skipping the few hidden under the tail
       f.trail.forEach(([x, y], i) => {
-        if (i < f.trail.length - 3 && i % 2 === 0) canvas!.mark(x, y, ".");
+        if (i < f.trail.length - 3 && i % 2 === 0) canvas!.mark(transform(VIEW, [x, y, 0]), ".");
       });
       pre.textContent = canvas.toString();
     };
@@ -164,7 +169,7 @@ export default function AsciiPlane({ className = "" }: { className?: string }) {
     <pre
       ref={ref}
       aria-hidden="true"
-      className={`select-none overflow-hidden whitespace-pre font-mono text-[11px] leading-[13px] text-[#3a3a3a] ${className}`}
+      className={`select-none overflow-hidden whitespace-pre font-mono text-[8px] leading-[9px] text-[#2a2a2a] ${className}`}
     />
   );
 }
