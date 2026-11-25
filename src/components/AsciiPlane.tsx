@@ -3,13 +3,15 @@
 import { useEffect, useRef } from "react";
 import { AsciiCanvas, buildPlane, multiply, rotateX, rotateZ, transform } from "@/lib/ascii3d";
 
-// projection scale per row of the grid. Tying it to the row count keeps the
-// scene the same size in world units whatever the box measures, so the plane
-// scales with the box and its turns stay the same sharpness.
+// the plane's on-screen size follows the screen height, not the flight area:
+// one world unit is drawn SCALE_PER_ROW rows tall for every row in
+// SIZE_SCREEN_SHARE of the screen. A bigger flight area just gives the plane
+// more room to fly.
 const SCALE_PER_ROW = 1.3;
+const SIZE_SCREEN_SHARE = 0.44;
 // the plane spans 2 units nose to tail and wingtip to wingtip before scaling
-const PLANE_SCALE = 0.46;
-// world units per second; a full figure eight takes about 15 seconds
+const PLANE_SCALE = 0.42;
+// world units per second; a full figure eight takes about 15-20 seconds
 const SPEED = 0.85;
 // the figure eight can be at most this many times wider than it is tall; any
 // longer and the ends of its loops become hairpin turns
@@ -51,8 +53,8 @@ type Flight = {
 /**
  * An ASCII airplane that flies a figure eight filling this element, banking
  * into each loop, rolling level through the crossing, and leaving a dotted
- * trail. The scene scales with the element's height, so a bigger element
- * means a bigger plane.
+ * trail. The path stretches to fill the element; the plane's size follows the
+ * screen height.
  */
 export default function AsciiPlane({ className = "" }: { className?: string }) {
   const ref = useRef<HTMLPreElement>(null);
@@ -99,7 +101,7 @@ export default function AsciiPlane({ className = "" }: { className?: string }) {
         canvas = null;
         return;
       }
-      const ky = rows * SCALE_PER_ROW;
+      const ky = ((SIZE_SCREEN_SHARE * window.innerHeight) / lineHeight) * SCALE_PER_ROW;
       canvas = new AsciiCanvas(cols, rows, ky, (ky * lineHeight) / charWidth);
       if (!flight) {
         // start at the right end of the eight; a still frame (for reduced
