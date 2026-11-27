@@ -30,7 +30,7 @@ export const experiences: Experience[] = [
       "Despite how drastically AI has accelerated software development, code review remains a bottleneck",
       "Our internal agentic solution aims to reduce the need for manual reviews, while ensuring code quality standards and minimizing risks",
       "My focus has been improving the precision of our agents",
-      "Specifically, developing an external context retrieval layer end to end, and now working design for a self-improvement loop",
+      "Specifically, developing an external context retrieval layer end to end, and now working on the design for a self-improvement loop",
       "Previously, I was focused on the safety/value of our AI chat product; contributing to evaluation infrastructure and roadmap features",
     ],
   },
